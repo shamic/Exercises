@@ -7,22 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D9C9D191FABF6C0008E4945 /* XSExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C9D181FABF6C0008E4945 /* XSExercisesViewController.m */; };
+		5D9C9D1D1FABFCEB008E4945 /* XSExercisesCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C9D1B1FABFCEB008E4945 /* XSExercisesCollectionViewCell.m */; };
+		5D9C9D1E1FABFCEB008E4945 /* XSExercisesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C9D1C1FABFCEB008E4945 /* XSExercisesCollectionViewCell.xib */; };
+		5D9C9D211FAC0B6B008E4945 /* XSExercisesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C9D201FAC0B6B008E4945 /* XSExercisesModel.m */; };
+		5D9C9D251FAC4A87008E4945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C9D241FAC4A87008E4945 /* Assets.xcassets */; };
+		5D9C9D281FAC4E93008E4945 /* UIColor+XSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9C9D271FAC4E93008E4945 /* UIColor+XSColor.m */; };
 		B10EB8161FAB59F40060C26E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB8151FAB59F40060C26E /* AppDelegate.m */; };
 		B10EB8191FAB59F40060C26E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB8181FAB59F40060C26E /* ViewController.m */; };
 		B10EB81C1FAB59F40060C26E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10EB81A1FAB59F40060C26E /* Main.storyboard */; };
-		B10EB81E1FAB59F40060C26E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B10EB81D1FAB59F40060C26E /* Assets.xcassets */; };
 		B10EB8211FAB59F40060C26E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10EB81F1FAB59F40060C26E /* LaunchScreen.storyboard */; };
 		B10EB8241FAB59F40060C26E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB8231FAB59F40060C26E /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D9C9D171FABF6C0008E4945 /* XSExercisesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSExercisesViewController.h; sourceTree = "<group>"; };
+		5D9C9D181FABF6C0008E4945 /* XSExercisesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSExercisesViewController.m; sourceTree = "<group>"; };
+		5D9C9D1A1FABFCEB008E4945 /* XSExercisesCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSExercisesCollectionViewCell.h; sourceTree = "<group>"; };
+		5D9C9D1B1FABFCEB008E4945 /* XSExercisesCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSExercisesCollectionViewCell.m; sourceTree = "<group>"; };
+		5D9C9D1C1FABFCEB008E4945 /* XSExercisesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XSExercisesCollectionViewCell.xib; sourceTree = "<group>"; };
+		5D9C9D1F1FAC0B6B008E4945 /* XSExercisesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSExercisesModel.h; sourceTree = "<group>"; };
+		5D9C9D201FAC0B6B008E4945 /* XSExercisesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSExercisesModel.m; sourceTree = "<group>"; };
+		5D9C9D241FAC4A87008E4945 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5D9C9D261FAC4E93008E4945 /* UIColor+XSColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+XSColor.h"; sourceTree = "<group>"; };
+		5D9C9D271FAC4E93008E4945 /* UIColor+XSColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+XSColor.m"; sourceTree = "<group>"; };
 		B10EB8111FAB59F40060C26E /* Exercises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercises.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10EB8141FAB59F40060C26E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B10EB8151FAB59F40060C26E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B10EB8171FAB59F40060C26E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B10EB8181FAB59F40060C26E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B10EB81B1FAB59F40060C26E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B10EB81D1FAB59F40060C26E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B10EB8201FAB59F40060C26E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B10EB8221FAB59F40060C26E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B10EB8231FAB59F40060C26E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,10 +76,19 @@
 				B10EB8151FAB59F40060C26E /* AppDelegate.m */,
 				B10EB8171FAB59F40060C26E /* ViewController.h */,
 				B10EB8181FAB59F40060C26E /* ViewController.m */,
+				5D9C9D171FABF6C0008E4945 /* XSExercisesViewController.h */,
+				5D9C9D181FABF6C0008E4945 /* XSExercisesViewController.m */,
+				5D9C9D1A1FABFCEB008E4945 /* XSExercisesCollectionViewCell.h */,
+				5D9C9D1B1FABFCEB008E4945 /* XSExercisesCollectionViewCell.m */,
+				5D9C9D261FAC4E93008E4945 /* UIColor+XSColor.h */,
+				5D9C9D271FAC4E93008E4945 /* UIColor+XSColor.m */,
+				5D9C9D1F1FAC0B6B008E4945 /* XSExercisesModel.h */,
+				5D9C9D201FAC0B6B008E4945 /* XSExercisesModel.m */,
+				5D9C9D1C1FABFCEB008E4945 /* XSExercisesCollectionViewCell.xib */,
 				B10EB81A1FAB59F40060C26E /* Main.storyboard */,
-				B10EB81D1FAB59F40060C26E /* Assets.xcassets */,
 				B10EB81F1FAB59F40060C26E /* LaunchScreen.storyboard */,
 				B10EB8221FAB59F40060C26E /* Info.plist */,
+				5D9C9D241FAC4A87008E4945 /* Assets.xcassets */,
 				B10EB8231FAB59F40060C26E /* main.m */,
 			);
 			path = Exercises;
@@ -130,7 +153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B10EB8211FAB59F40060C26E /* LaunchScreen.storyboard in Resources */,
-				B10EB81E1FAB59F40060C26E /* Assets.xcassets in Resources */,
+				5D9C9D1E1FABFCEB008E4945 /* XSExercisesCollectionViewCell.xib in Resources */,
+				5D9C9D251FAC4A87008E4945 /* Assets.xcassets in Resources */,
 				B10EB81C1FAB59F40060C26E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,9 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D9C9D211FAC0B6B008E4945 /* XSExercisesModel.m in Sources */,
 				B10EB8191FAB59F40060C26E /* ViewController.m in Sources */,
+				5D9C9D1D1FABFCEB008E4945 /* XSExercisesCollectionViewCell.m in Sources */,
 				B10EB8241FAB59F40060C26E /* main.m in Sources */,
 				B10EB8161FAB59F40060C26E /* AppDelegate.m in Sources */,
+				5D9C9D281FAC4E93008E4945 /* UIColor+XSColor.m in Sources */,
+				5D9C9D191FABF6C0008E4945 /* XSExercisesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2KV7TBUW4P;
+				DEVELOPMENT_TEAM = GZPZTXV876;
 				INFOPLIST_FILE = Exercises/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shamic.Exercises;
@@ -293,7 +321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2KV7TBUW4P;
+				DEVELOPMENT_TEAM = GZPZTXV876;
 				INFOPLIST_FILE = Exercises/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shamic.Exercises;
