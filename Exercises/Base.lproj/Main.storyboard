@@ -61,6 +61,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="0.99215686274509807" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="MxZ-3g-tS1" kind="show" id="bJA-Eg-jRW"/>
                                         </connections>
