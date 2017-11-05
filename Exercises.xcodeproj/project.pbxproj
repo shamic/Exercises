@@ -20,6 +20,7 @@
 		B1CA9A521FAD608B00AA2665 /* XSExercisesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CA9A501FAD608B00AA2665 /* XSExercisesCollectionViewCell.xib */; };
 		B1CA9A561FAD60CF00AA2665 /* XSExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA9A551FAD60CE00AA2665 /* XSExercisesViewController.m */; };
 		B1CA9A5A1FAD614B00AA2665 /* UIColor+XSColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA9A591FAD614B00AA2665 /* UIColor+XSColor.m */; };
+		B1CA9A601FAEC24200AA2665 /* XSDBCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA9A5F1FAEC24200AA2665 /* XSDBCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		B1CA9A551FAD60CE00AA2665 /* XSExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSExercisesViewController.m; sourceTree = "<group>"; };
 		B1CA9A581FAD614B00AA2665 /* UIColor+XSColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+XSColor.h"; sourceTree = "<group>"; };
 		B1CA9A591FAD614B00AA2665 /* UIColor+XSColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+XSColor.m"; sourceTree = "<group>"; };
+		B1CA9A5E1FAEC24200AA2665 /* XSDBCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSDBCenter.h; sourceTree = "<group>"; };
+		B1CA9A5F1FAEC24200AA2665 /* XSDBCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSDBCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 		B10EB8131FAB59F40060C26E /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
+				B1CA9A5D1FAEC21800AA2665 /* Utils */,
 				B1CA9A531FAD60CE00AA2665 /* Controllers */,
 				B1CA9A4D1FAD608B00AA2665 /* Views */,
 				B1CA9A491FAD605800AA2665 /* Models */,
@@ -150,6 +154,15 @@
 				B1CA9A591FAD614B00AA2665 /* UIColor+XSColor.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		B1CA9A5D1FAEC21800AA2665 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B1CA9A5E1FAEC24200AA2665 /* XSDBCenter.h */,
+				B1CA9A5F1FAEC24200AA2665 /* XSDBCenter.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CA9A601FAEC24200AA2665 /* XSDBCenter.m in Sources */,
 				B10EB8241FAB59F40060C26E /* main.m in Sources */,
 				B1CA9A4C1FAD605800AA2665 /* XSExercisesModel.m in Sources */,
 				B1CA9A561FAD60CF00AA2665 /* XSExercisesViewController.m in Sources */,

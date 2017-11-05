@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BGFMDB.h"
 
 typedef enum : NSUInteger {
     ExercisesTypeSingle,
