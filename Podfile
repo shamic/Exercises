@@ -6,6 +6,6 @@ target 'Exercises' do
   # use_frameworks!
 
   # Pods for Exercises
-  pod 'FMDB'
+  pod 'BGFMDB', '~> 1.51'
 
 end
