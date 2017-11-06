@@ -51,6 +51,10 @@
         viewController.type = AnswerTypeRandomQuestions;
         viewController.randomQuestionsCount = [self.textField.text integerValue];
     }
+    
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
 }
 
 @end

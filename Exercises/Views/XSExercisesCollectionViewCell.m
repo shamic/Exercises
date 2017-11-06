@@ -85,7 +85,13 @@ static NSString *cellId = @"cellId";
             }
         }
     } else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", self.exModel.options[self.exModel.answerIndex - 1]];
+        NSString *answer = @"";
+        if (self.exModel.answerIndex > self.exModel.options.count) {
+            answer = @"无答案";
+        } else {
+            answer = self.exModel.options[self.exModel.answerIndex - 1];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", answer];
     }
     
     return cell;

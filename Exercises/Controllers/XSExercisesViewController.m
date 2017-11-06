@@ -33,10 +33,15 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     // init collectionView
     self.isShowAnswer = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
     [self.view bringSubviewToFront:self.toolView];
     
     [self getData];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.topItem.title = @"";
 }
 
 - (IBAction)showAnswer:(UISwitch *)sender {
