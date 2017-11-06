@@ -6,11 +6,11 @@
 //  Copyright © 2017年 shamic. All rights reserved.
 //
 
-#define kKeyExId         @"ex_id"
-#define kKeyExTitle      @"ex_title"
-#define kKeyExType       @"ex_type"
-#define kKeyExOptions    @"ex_options"
-#define kKeyAnswerIndex  @"ex_answerIndex"
+#define kKeyNumber       @"number"
+#define kKeyTitle        @"title"
+#define kKeyType         @"type"
+#define kKeyOptions      @"options"
+#define kKeyanswer       @"answer"
 
 
 #import "XSExercisesModel.h"
@@ -19,16 +19,35 @@
 
 - (XSExercisesModel *)initWithDictionary:(NSDictionary *)dic {
     if (self = [self init]) {
-        _ex_id = dic[kKeyExId];
-        _ex_title = dic[kKeyExTitle];
-        _ex_type = [dic[kKeyExType] integerValue];
-        _ex_options = dic[kKeyExOptions];
-        _ex_answerIndex = [dic[kKeyAnswerIndex] integerValue];
+        _number = [NSString stringWithFormat:@"%@", dic[kKeyNumber]];
+        _title = dic[kKeyTitle];
+        _type = [dic[kKeyType] integerValue];
+        _options = [self optionsFromOptionsStr:dic[kKeyOptions]];
+        _answerIndex = [self answerIndexFromAnswer:dic[kKeyanswer]];
         
         _selectedIndex = 0;
     }
     
     return self;
+}
+
+- (NSInteger)answerIndexFromAnswer:(NSString *)answer {
+    if ([answer isEqualToString:@"A"]) {
+        return 1;
+    } else if ([answer isEqualToString:@"B"]) {
+        return 2;
+    } else if ([answer isEqualToString:@"C"]) {
+        return 3;
+    } else if ([answer isEqualToString:@"D"]) {
+        return 4;
+    } else {
+        return 1111; // 无答案
+    }
+}
+
+- (NSArray *)optionsFromOptionsStr:(NSString *)optionStr {
+    NSArray *arr = [optionStr componentsSeparatedByString:@"&&&"];
+    return arr;
 }
 
 @end

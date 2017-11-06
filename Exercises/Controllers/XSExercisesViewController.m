@@ -9,6 +9,7 @@
 #import "XSExercisesViewController.h"
 #import "XSExercisesCollectionViewCell.h"
 #import "XSExercisesModel.h"
+#import "XSDBCenter.h"
 
 @interface XSExercisesViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, XSExercisesCollectionViewCellDelegate>
 
@@ -51,20 +52,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (NSArray *)data {
     if (_data == nil) {
-        NSMutableArray *muArr = [NSMutableArray array];
-//        NSDictionary *dic = @{@"ex_id":@"1", @"ex_title":@"fjalkjsdfk", @"ex_type":@(0), @"ex_options":@[@"a,jlkjlkj",@"b,fdsf"]};
-        for (NSInteger i = 0; i < 10; i++) {
-            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            [dic setValue:[NSString stringWithFormat:@"%@", @(i + 1)] forKey:@"ex_id"];
-            [dic setValue:[NSString stringWithFormat:@"%@：巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉", @(i + 1)] forKey:@"ex_title"];
-            [dic setValue:@(0) forKey:@"ex_type"];
-            [dic setValue:@[@"A: 巴拉巴拉巴拉巴拉巴拉巴拉巴拉", @"B: 巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉", @"C: 巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉", @"D: 巴拉巴拉巴拉巴"] forKey:@"ex_options"];
-            [dic setValue:@(2) forKey:@"ex_answerIndex"];
-
-            XSExercisesModel *model = [[XSExercisesModel alloc] initWithDictionary:dic];
-            [muArr addObject:model];
-        }
-        _data = muArr;
+        _data = [[XSDBCenter shareManager] getAllSingleExercisesData];
     }
     
     return _data;

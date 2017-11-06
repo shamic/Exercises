@@ -10,6 +10,8 @@
 
 @interface XSDBCenter : NSObject
 
-+(_Nonnull instancetype)shareManager;
++ (_Nonnull instancetype)shareManager;
+
+- (NSArray *_Nullable)getAllSingleExercisesData;
 
 @end

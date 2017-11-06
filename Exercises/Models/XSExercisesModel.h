@@ -17,12 +17,11 @@ typedef enum : NSUInteger {
 
 @interface XSExercisesModel : NSObject
 
-@property (nonatomic, strong) NSString *ex_id;
-@property (nonatomic, strong) NSString *ex_title;
-@property (nonatomic, assign) ExercisesType ex_type;
-@property (nonatomic, strong) NSArray *ex_options;
-@property (nonatomic, assign) NSInteger ex_answerIndex;
-
+@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) ExercisesType type;
+@property (nonatomic, strong) NSArray *options;
+@property (nonatomic, assign) NSInteger answerIndex;
 @property (nonatomic, assign) NSInteger selectedIndex; // 默认值 0: 未选择过
 
 - (XSExercisesModel *)initWithDictionary: (NSDictionary *)dic;
