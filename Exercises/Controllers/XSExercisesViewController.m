@@ -43,6 +43,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
     self.isShowAnswer = [sender isOn];
     [self.collectionView reloadData];
 }
+- (IBAction)favoriteBtn:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 
 #pragma mark - lazy load
 - (UICollectionView *)collectionView {

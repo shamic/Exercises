@@ -135,15 +135,25 @@
                                             <constraint firstAttribute="height" constant="1" id="mpZ-bM-mL8"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITB-sS-hzX">
-                                        <rect key="frame" x="165" y="10" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITB-sS-hzX">
+                                        <rect key="frame" x="171" y="11" width="32" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="86x-CA-4fu"/>
+                                            <constraint firstAttribute="height" constant="28" id="kEp-Bj-Y5Q"/>
+                                        </constraints>
+                                        <state key="normal" image="lover"/>
+                                        <state key="selected" image="lover_selected"/>
+                                        <connections>
+                                            <action selector="favoriteBtn:" destination="MxZ-3g-tS1" eventType="touchUpInside" id="7kl-lx-HPR"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Mw-gh-1VB">
-                                        <rect key="frame" x="46" y="8" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Mw-gh-1VB">
+                                        <rect key="frame" x="40" y="9" width="32" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="cdH-DJ-oaM"/>
+                                            <constraint firstAttribute="width" constant="32" id="uMO-dh-fQr"/>
+                                        </constraints>
+                                        <state key="normal" image="wrong-mark"/>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-7G-Qt9">
                                         <rect key="frame" x="286" y="10" width="51" height="31"/>
@@ -155,11 +165,15 @@
                                 <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="sNw-uJ-Sl9" firstAttribute="top" secondItem="9hC-AT-2BI" secondAttribute="top" id="Aqm-W4-aJR"/>
+                                    <constraint firstItem="5Mw-gh-1VB" firstAttribute="leading" secondItem="9hC-AT-2BI" secondAttribute="leading" constant="40" id="EdD-DV-YAZ"/>
                                     <constraint firstAttribute="trailing" secondItem="sNw-uJ-Sl9" secondAttribute="trailing" id="Hdc-GS-1D3"/>
                                     <constraint firstItem="sNw-uJ-Sl9" firstAttribute="leading" secondItem="9hC-AT-2BI" secondAttribute="leading" id="J8c-qM-5Ua"/>
+                                    <constraint firstItem="ITB-sS-hzX" firstAttribute="centerY" secondItem="9hC-AT-2BI" secondAttribute="centerY" id="Qt8-gU-fdZ"/>
+                                    <constraint firstItem="ITB-sS-hzX" firstAttribute="centerX" secondItem="9hC-AT-2BI" secondAttribute="centerX" id="VoE-Lg-9tO"/>
                                     <constraint firstAttribute="trailing" secondItem="LQO-7G-Qt9" secondAttribute="trailing" constant="40" id="hD2-1z-gXt"/>
                                     <constraint firstAttribute="height" constant="50" id="hZO-rd-uNd"/>
                                     <constraint firstItem="LQO-7G-Qt9" firstAttribute="top" secondItem="sNw-uJ-Sl9" secondAttribute="bottom" constant="9" id="jW2-X4-g2s"/>
+                                    <constraint firstItem="5Mw-gh-1VB" firstAttribute="centerY" secondItem="9hC-AT-2BI" secondAttribute="centerY" id="nhg-eg-pqX"/>
                                     <constraint firstAttribute="bottom" secondItem="LQO-7G-Qt9" secondAttribute="bottom" constant="9" id="q3y-RL-3Ro"/>
                                 </constraints>
                             </view>
@@ -197,6 +211,11 @@
             <point key="canvasLocation" x="-280" y="142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lover" width="64" height="56"/>
+        <image name="lover_selected" width="64" height="56"/>
+        <image name="wrong-mark" width="64" height="64"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bJA-Eg-jRW"/>
     </inferredMetricsTieBreakers>
