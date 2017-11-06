@@ -9,6 +9,7 @@
 #import "XSExercisesViewController.h"
 #import "XSExercisesCollectionViewCell.h"
 #import "XSExercisesModel.h"
+#import "UIColor+XSColor.h"
 #import "XSDBCenter.h"
 
 @interface XSExercisesViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, XSExercisesCollectionViewCellDelegate>
@@ -61,6 +62,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         _collectionView.pagingEnabled = YES;
         _collectionView.bounces = NO;
         [_collectionView registerNib:[UINib nibWithNibName:@"XSExercisesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:cellIdentifier];
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"finishedCell"];
     }
     
     return _collectionView;
@@ -68,22 +70,45 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (void)getData {
     [[XSDBCenter shareManager] getAllSingleExercisesDataOnComplete:^(NSArray * _Nullable array) {
-        self.data = array;
+        if (self.type == AnswerTypeOrderQuestions) {
+            self.data = array;
+        } else {
+            NSMutableSet *randomSet = [[NSMutableSet alloc] init];
+            NSInteger randomCount = ((self.randomQuestionsCount == 0 || self.randomQuestionsCount > array.count) ? 50 : self.randomQuestionsCount);
+            while ([randomSet count] < randomCount) {
+                int r = arc4random() % [array count];
+                [randomSet addObject:[array objectAtIndex:r]];
+            }
+            
+            NSArray *randomArray = [randomSet allObjects];
+            self.data = randomArray;
+        }
+        
         [self.collectionView reloadData];
     }];
 }
 
 #pragma mark - collectionview delegate
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    XSExercisesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.exModel = self.data[indexPath.row];
-    cell.isShowAnswer = self.isShowAnswer;
-    cell.delegate = self;
-    return cell;
+    if (indexPath.row < self.data.count) {
+        XSExercisesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.exModel = self.data[indexPath.row];
+        cell.isShowAnswer = self.isShowAnswer;
+        cell.delegate = self;
+        return cell;
+    } else {
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"finishedCell" forIndexPath:indexPath];
+        cell.contentView.backgroundColor = [UIColor backgroundColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
+        label.numberOfLines = 0;
+        label.text = [NSString stringWithFormat:@"您完成了 %lu 道题\n\n", (unsigned long)self.data.count];
+        [cell.contentView addSubview:label];
+        return cell;
+    }
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.data.count;
+    return self.data.count + 1;
 }
 
 #pragma mark - XSExercisesCollectionViewCellDelegate

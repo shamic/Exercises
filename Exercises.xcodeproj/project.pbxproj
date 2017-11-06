@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5CB3BA879EE84FACAFBC0B7D /* libPods-Exercises.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4826A03ACF8382C6EF7122 /* libPods-Exercises.a */; };
 		5D18C1BD1FB02DD50097D18A /* Exercises.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D18C1BC1FB02DD50097D18A /* Exercises.bundle */; };
+		5D18C1C01FB04F8E0097D18A /* XSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18C1BF1FB04F8E0097D18A /* XSHomeViewController.m */; };
 		5D9C9D251FAC4A87008E4945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C9D241FAC4A87008E4945 /* Assets.xcassets */; };
 		B10EB8161FAB59F40060C26E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB8151FAB59F40060C26E /* AppDelegate.m */; };
 		B10EB81C1FAB59F40060C26E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10EB81A1FAB59F40060C26E /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 		22ECA971A6AA7D791EB24B99 /* Pods-Exercises.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exercises.release.xcconfig"; path = "Pods/Target Support Files/Pods-Exercises/Pods-Exercises.release.xcconfig"; sourceTree = "<group>"; };
 		2B335D916B0AFBCD8CA0536C /* Pods-Exercises.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exercises.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exercises/Pods-Exercises.debug.xcconfig"; sourceTree = "<group>"; };
 		5D18C1BC1FB02DD50097D18A /* Exercises.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Exercises.bundle; sourceTree = "<group>"; };
+		5D18C1BE1FB04F8E0097D18A /* XSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSHomeViewController.h; sourceTree = "<group>"; };
+		5D18C1BF1FB04F8E0097D18A /* XSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSHomeViewController.m; sourceTree = "<group>"; };
 		5D9C9D241FAC4A87008E4945 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF4826A03ACF8382C6EF7122 /* libPods-Exercises.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Exercises.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B10EB8111FAB59F40060C26E /* Exercises.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercises.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +147,8 @@
 		B1CA9A531FAD60CE00AA2665 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5D18C1BE1FB04F8E0097D18A /* XSHomeViewController.h */,
+				5D18C1BF1FB04F8E0097D18A /* XSHomeViewController.m */,
 				B1CA9A541FAD60CE00AA2665 /* XSExercisesViewController.h */,
 				B1CA9A551FAD60CE00AA2665 /* XSExercisesViewController.m */,
 			);
@@ -300,6 +305,7 @@
 				B10EB8241FAB59F40060C26E /* main.m in Sources */,
 				B1CA9A4C1FAD605800AA2665 /* XSExercisesModel.m in Sources */,
 				B1CA9A561FAD60CF00AA2665 /* XSExercisesViewController.m in Sources */,
+				5D18C1C01FB04F8E0097D18A /* XSHomeViewController.m in Sources */,
 				B10EB8161FAB59F40060C26E /* AppDelegate.m in Sources */,
 				B1CA9A5A1FAD614B00AA2665 /* UIColor+XSColor.m in Sources */,
 				B1CA9A511FAD608B00AA2665 /* XSExercisesCollectionViewCell.m in Sources */,

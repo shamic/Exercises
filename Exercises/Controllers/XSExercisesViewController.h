@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XSExercisesViewController : UIViewController
+typedef enum : NSUInteger {
+    AnswerTypeOrderQuestions,
+    AnswerTypeRandomQuestions
+} AnswerType;
 
+@interface XSExercisesViewController : UIViewController
+@property (nonatomic, assign) AnswerType type;
+@property (nonatomic, assign) NSInteger randomQuestionsCount;
 @end
