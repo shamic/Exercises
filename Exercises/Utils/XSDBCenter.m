@@ -50,26 +50,20 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     // 如果频繁操作数据库时,建议进行此设置(即在操作过程不关闭数据库);
     //bg_setDisableCloseDB(YES);
     bg_setSqliteName(@"Exercises");
-    
-    __weak typeof(self) weakSelf = self;
+}
+
+- (void)getAllSingleExercisesDataOnComplete:(void (^)(NSArray * _Nullable))complete {
     NSString *condition = [NSString stringWithFormat:@"order by %@ asc",singleExercisesTablePrimaryKey];
     [[BGDB shareManager] queryWithTableName:singleExercisesTable conditions:condition complete:^(NSArray * _Nullable array) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-
         NSMutableArray *arr = [NSMutableArray array];
         for (NSDictionary *dic in array) {
             XSExercisesModel *model = [[XSExercisesModel alloc] initWithDictionary:dic];
             [arr addObject:model];
         }
-        strongSelf.data = arr;
+        complete(arr);
     }];
     //关闭数据库
     [[BGDB shareManager] closeDB];
-}
-
-- (NSArray *)getAllSingleExercisesData {
-    
-    return _data;
 }
 
 @end

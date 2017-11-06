@@ -14,6 +14,7 @@
 @interface XSExercisesCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) XSExercisesModel *exModel;
+@property (nonatomic, assign) BOOL isShowAnswer;
 @property (nonatomic, weak) id<XSExercisesCollectionViewCellDelegate> delegate;
 
 @end

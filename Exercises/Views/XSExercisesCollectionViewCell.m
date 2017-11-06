@@ -19,6 +19,10 @@ static NSString *cellId = @"cellId";
 
 @implementation XSExercisesCollectionViewCell
 
+- (void)dealloc {
+    NSLog(@"XSExercisesCollectionViewCell dealloc");
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.tableView.delegate = self;
@@ -44,7 +48,10 @@ static NSString *cellId = @"cellId";
     label.font = [UIFont systemFontOfSize:20.0];
     [view addSubview:label];
     self.tableView.tableHeaderView = view;
-    
+}
+
+- (void)setIsShowAnswer:(BOOL)isShowAnswer {
+    _isShowAnswer = isShowAnswer;
     [self.tableView reloadData];
 }
 
@@ -85,7 +92,7 @@ static NSString *cellId = @"cellId";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.exModel.selectedIndex != 0) {
+    if (self.exModel.selectedIndex != 0 || self.isShowAnswer) {
         return 2;
     }
     return 1;

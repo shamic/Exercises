@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, assign) BOOL isShowAnswer;
+@property (weak, nonatomic) IBOutlet UIView *toolView;
 
 @end
 
@@ -22,10 +24,23 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 @implementation XSExercisesViewController
 
+- (void)dealloc {
+    NSLog(@"XSExercisesViewController dealloc");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // init collectionView
+    self.isShowAnswer = NO;
     [self.view addSubview:self.collectionView];
+    [self.view bringSubviewToFront:self.toolView];
+    
+    [self getData];
+}
+
+- (IBAction)showAnswer:(UISwitch *)sender {
+    self.isShowAnswer = [sender isOn];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - lazy load
@@ -38,6 +53,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64.0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layout];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.showsVerticalScrollIndicator = NO;
@@ -50,18 +66,18 @@ static NSString *cellIdentifier = @"cellIdentifier";
     return _collectionView;
 }
 
-- (NSArray *)data {
-    if (_data == nil) {
-        _data = [[XSDBCenter shareManager] getAllSingleExercisesData];
-    }
-    
-    return _data;
+- (void)getData {
+    [[XSDBCenter shareManager] getAllSingleExercisesDataOnComplete:^(NSArray * _Nullable array) {
+        self.data = array;
+        [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark - collectionview delegate
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     XSExercisesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.exModel = self.data[indexPath.row];
+    cell.isShowAnswer = self.isShowAnswer;
     cell.delegate = self;
     return cell;
 }

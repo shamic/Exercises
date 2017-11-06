@@ -12,6 +12,6 @@
 
 + (_Nonnull instancetype)shareManager;
 
-- (NSArray *_Nullable)getAllSingleExercisesData;
+- (void)getAllSingleExercisesDataOnComplete:(void(^_Nullable)(NSArray* _Nullable array))complete;
 
 @end
