@@ -21,6 +21,6 @@
 
 @protocol XSExercisesCollectionViewCellDelegate <NSObject>
 
-- (void)didSelectedCellAtIndex:(NSInteger)index;
+- (void)didSelectedCellWithItem:(XSExercisesModel *)item;
 
 @end

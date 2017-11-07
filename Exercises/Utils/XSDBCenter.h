@@ -14,4 +14,7 @@
 
 - (void)getAllSingleExercisesDataOnComplete:(void(^_Nullable)(NSArray* _Nullable array))complete;
 
+- (NSInteger)getLastNumberOfOrderQuestions;
+- (void)saveLastNumberOfOrderQuestions: (NSInteger)number;
+
 @end

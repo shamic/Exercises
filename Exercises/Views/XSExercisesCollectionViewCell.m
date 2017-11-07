@@ -131,14 +131,15 @@ static NSString *cellId = @"cellId";
         }
         
         self.exModel.selectedIndex = indexPath.row+1;
-        if (self.exModel.selectedIndex != self.exModel.answerIndex) {
-            // 选择错误❌
-            [self.tableView reloadData];
-            return;
-        }
-        if ([self.delegate respondsToSelector:@selector(didSelectedCellAtIndex:)]) {
-            [self.tableView reloadData];
-            [self.delegate didSelectedCellAtIndex:indexPath.row+1];
+        [self.tableView reloadData];
+
+//        if (self.exModel.selectedIndex != self.exModel.answerIndex) {
+//            // 选择错误❌
+//            [self.tableView reloadData];
+//            return;
+//        }
+        if ([self.delegate respondsToSelector:@selector(didSelectedCellWithItem:)]) {
+            [self.delegate didSelectedCellWithItem:self.exModel];
         }
     }
 }

@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSMutableArray *correctArr;
+@property (nonatomic, strong) NSMutableArray *failureArr;
 @property (nonatomic, assign) BOOL isShowAnswer;
 @property (weak, nonatomic) IBOutlet UIView *toolView;
 
@@ -37,11 +39,24 @@ static NSString *cellIdentifier = @"cellIdentifier";
     [self.view addSubview:self.collectionView];
     [self.view bringSubviewToFront:self.toolView];
     
+    self.correctArr = [NSMutableArray array];
+    self.failureArr = [NSMutableArray array];
+    
     [self getData];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.topItem.title = @"";
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.type == AnswerTypeOrderQuestions) {
+        NSInteger row = [[self.collectionView indexPathsForVisibleItems] firstObject].row;
+        if (row != 0 && row < self.data.count) {
+            [[XSDBCenter shareManager] saveLastNumberOfOrderQuestions: row+1];
+        }
+    }
 }
 
 - (IBAction)showAnswer:(UISwitch *)sender {
@@ -93,6 +108,14 @@ static NSString *cellIdentifier = @"cellIdentifier";
         }
         
         [self.collectionView reloadData];
+        
+        if (self.type == AnswerTypeOrderQuestions) {
+            // scroll to last browsed item
+            NSInteger row = [[XSDBCenter shareManager] getLastNumberOfOrderQuestions] - 1;
+            if (row != 0 && row < self.data.count) {
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            }
+        }
     }];
 }
 
@@ -109,7 +132,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
         cell.contentView.backgroundColor = [UIColor backgroundColor];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
         label.numberOfLines = 0;
-        label.text = [NSString stringWithFormat:@"您完成了 %lu 道题\n\n", (unsigned long)self.data.count];
+        label.text = [NSString stringWithFormat:@"您完成了 %lu 道题\n\n❌ %lu 道题\n\n✅ %lu 道题\n\n本次成绩： %lu 分", (unsigned long)self.data.count, self.failureArr.count,  self.correctArr.count, self.correctArr.count*100/self.data.count];
         [cell.contentView addSubview:label];
         return cell;
     }
@@ -119,21 +142,44 @@ static NSString *cellIdentifier = @"cellIdentifier";
     return self.data.count + 1;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *identifier = cell.reuseIdentifier;
+    if ([identifier isEqualToString:@"finishedCell"]) {
+        self.toolView.hidden = YES;
+    } else {
+        self.toolView.hidden = NO;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger index = scrollView.contentOffset.x / scrollView.frame.size.width;
+    //NSLog(@"index: %ld", (long)index);
+    if (index == self.data.count) {
+        self.toolView.hidden = YES;
+    } else {
+        self.toolView.hidden = NO;
+    }
+}
+
 #pragma mark - XSExercisesCollectionViewCellDelegate
-- (void)didSelectedCellAtIndex:(NSInteger)index {
+- (void)didSelectedCellWithItem:(XSExercisesModel *)item {
     NSInteger row = [[self.collectionView indexPathsForVisibleItems] firstObject].row + 1;
     if (row < self.data.count) {
-//        [self.collectionView layoutIfNeeded];
+        if (item.selectedIndex != item.answerIndex) {
+            // 选择错误❌
+            [self.failureArr addObject:item];
+            return;
+        }
+        [self.correctArr addObject:item];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     } else {
         // 到最后一条了
-//        __weak typeof(self) weakSelf = self;
+          __weak typeof(self) weakSelf = self;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"恭喜！你已完成所有题目" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            __strong typeof(weakSelf) strongSelf = weakSelf;
+             __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
         }];
-        
-//        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {}];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
     }

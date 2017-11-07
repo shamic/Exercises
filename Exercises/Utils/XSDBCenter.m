@@ -48,7 +48,7 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
 - (void)initDB {
     bg_setDebug(YES);//打开调试模式,打印输出调试信息.
     // 如果频繁操作数据库时,建议进行此设置(即在操作过程不关闭数据库);
-    //bg_setDisableCloseDB(YES);
+    // bg_setDisableCloseDB(YES);
     bg_setSqliteName(@"Exercises");
 }
 
@@ -64,6 +64,16 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     }];
     //关闭数据库
     [[BGDB shareManager] closeDB];
+}
+
+- (void)saveLastNumberOfOrderQuestions: (NSInteger)number {
+    [[NSUserDefaults standardUserDefaults] setInteger:number forKey:@"lastNumber"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSInteger)getLastNumberOfOrderQuestions {
+    NSInteger number = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lastNumber"] integerValue];
+    return number;
 }
 
 @end
