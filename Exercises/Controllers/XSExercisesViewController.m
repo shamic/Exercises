@@ -130,6 +130,9 @@ static NSString *cellIdentifier = @"cellIdentifier";
     } else {
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"finishedCell" forIndexPath:indexPath];
         cell.contentView.backgroundColor = [UIColor backgroundColor];
+        for (UIView *view in cell.contentView.subviews) {
+            [view removeFromSuperview];
+        }
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, self.view.bounds.size.width/2, self.view.bounds.size.height/2)];
         label.numberOfLines = 0;
         label.text = [NSString stringWithFormat:@"您完成了 %lu 道题\n\n❌ %lu 道题\n\n✅ %lu 道题\n\n本次成绩： %lu 分", (unsigned long)self.data.count, self.failureArr.count,  self.correctArr.count, self.correctArr.count*100/self.data.count];
@@ -169,12 +172,20 @@ static NSString *cellIdentifier = @"cellIdentifier";
             // 选择错误❌
             [self.failureArr addObject:item];
             return;
+        } else if (item.selectedIndex == item.answerIndex) {
+            [self.correctArr addObject:item];
         }
-        [self.correctArr addObject:item];
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     } else {
         // 到最后一条了
-          __weak typeof(self) weakSelf = self;
+        if (item.selectedIndex != item.answerIndex) {
+            // 选择错误❌
+            [self.failureArr addObject:item];
+        } else if (item.selectedIndex == item.answerIndex) {
+            [self.correctArr addObject:item];
+        }
+        __weak typeof(self) weakSelf = self;
+        [self.collectionView reloadData];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"恭喜！你已完成所有题目" message:nil preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
              __strong typeof(weakSelf) strongSelf = weakSelf;
