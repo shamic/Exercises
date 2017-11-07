@@ -44,9 +44,34 @@ static NSString *cellIdentifier = @"cellIdentifier";
     
     [self getData];
 }
+
+- (void)jumpTo {
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"跳转到指定题目" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *searchIndex = alert.textFields.firstObject;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSInteger row = [searchIndex.text integerValue] - 1;
+        if (row >= 0 && row < self.data.count) {
+            [strongSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            [strongSelf.collectionView reloadData];
+        }
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+        textField.placeholder = @"输入题号定位";
+    }];
+
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.topItem.title = @"";
+    if (self.type == AnswerTypeOrderQuestions) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(jumpTo)];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -107,6 +132,8 @@ static NSString *cellIdentifier = @"cellIdentifier";
             self.data = randomArray;
         }
         
+        self.title = [NSString stringWithFormat:@"总题数：%ld", self.data.count];
+        
         [self.collectionView reloadData];
         
         if (self.type == AnswerTypeOrderQuestions) {
@@ -166,24 +193,22 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 #pragma mark - XSExercisesCollectionViewCellDelegate
 - (void)didSelectedCellWithItem:(XSExercisesModel *)item {
+    
+    if (item.selectedIndex != item.answerIndex) {
+        [self.failureArr addObject:item];
+    } else if (item.selectedIndex == item.answerIndex) {
+        [self.correctArr addObject:item];
+    }
+    
     NSInteger row = [[self.collectionView indexPathsForVisibleItems] firstObject].row + 1;
     if (row < self.data.count) {
         if (item.selectedIndex != item.answerIndex) {
             // 选择错误❌
-            [self.failureArr addObject:item];
             return;
-        } else if (item.selectedIndex == item.answerIndex) {
-            [self.correctArr addObject:item];
         }
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
     } else {
         // 到最后一条了
-        if (item.selectedIndex != item.answerIndex) {
-            // 选择错误❌
-            [self.failureArr addObject:item];
-        } else if (item.selectedIndex == item.answerIndex) {
-            [self.correctArr addObject:item];
-        }
         __weak typeof(self) weakSelf = self;
         [self.collectionView reloadData];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"恭喜！你已完成所有题目" message:nil preferredStyle:UIAlertControllerStyleAlert];

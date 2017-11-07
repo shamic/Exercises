@@ -20,9 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
-    // Do any additional setup after loading the view.
-//    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboard)];
-//    [self.tableView addGestureRecognizer:recognizer];
+    self.tableView.tableFooterView = [UIView new];
 }
 
 //- (void)hiddenKeyboard {

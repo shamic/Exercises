@@ -40,8 +40,8 @@ static NSString *cellId = @"cellId";
     if (height < 60.0) {
         height = 60.0;
     }
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height + 30)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, width - 30, height)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 15 + height + 25)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, width - 30, height)];
     label.numberOfLines = 0;
     label.text = showTitle;
     label.textColor = [UIColor titleColor];
