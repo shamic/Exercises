@@ -28,7 +28,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 @implementation XSExercisesViewController
 
 - (void)dealloc {
-    NSLog(@"XSExercisesViewController dealloc");
+    XSLog(@"XSExercisesViewController dealloc");
 }
 
 - (void)viewDidLoad {
@@ -117,30 +117,34 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (void)getData {
+    __weak typeof(self) weakSelf = self;
+
     [[XSDBCenter shareManager] getAllSingleExercisesDataOnComplete:^(NSArray * _Nullable array) {
-        if (self.type == AnswerTypeOrderQuestions) {
-            self.data = array;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+
+        if (strongSelf.type == AnswerTypeOrderQuestions) {
+            strongSelf.data = array;
         } else {
             NSMutableSet *randomSet = [[NSMutableSet alloc] init];
-            NSInteger randomCount = ((self.randomQuestionsCount == 0 || self.randomQuestionsCount > array.count) ? 50 : self.randomQuestionsCount);
+            NSInteger randomCount = ((strongSelf.randomQuestionsCount == 0 || strongSelf.randomQuestionsCount > array.count) ? 50 : strongSelf.randomQuestionsCount);
             while ([randomSet count] < randomCount) {
                 int r = arc4random() % [array count];
                 [randomSet addObject:[array objectAtIndex:r]];
             }
             
             NSArray *randomArray = [randomSet allObjects];
-            self.data = randomArray;
+            strongSelf.data = randomArray;
         }
         
-        self.title = [NSString stringWithFormat:@"总题数：%ld", self.data.count];
+        strongSelf.title = [NSString stringWithFormat:@"总题数：%ld", strongSelf.data.count];
         
-        [self.collectionView reloadData];
+        [strongSelf.collectionView reloadData];
         
-        if (self.type == AnswerTypeOrderQuestions) {
+        if (strongSelf.type == AnswerTypeOrderQuestions) {
             // scroll to last browsed item
             NSInteger row = [[XSDBCenter shareManager] getLastNumberOfOrderQuestions] - 1;
-            if (row != 0 && row < self.data.count) {
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+            if (row != 0 && row < strongSelf.data.count) {
+                [strongSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
             }
         }
     }];

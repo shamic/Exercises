@@ -23,10 +23,6 @@
     self.tableView.tableFooterView = [UIView new];
 }
 
-//- (void)hiddenKeyboard {
-//    [self.textField resignFirstResponder];
-//}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self.textField resignFirstResponder];
 }

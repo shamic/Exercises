@@ -1,0 +1,24 @@
+//
+//  Exercises-Prefix.pch
+//  Exercises
+//
+//  Created by Vary Fan on 2017/11/8.
+//  Copyright © 2017年 shamic. All rights reserved.
+//
+
+#ifndef Exercises_Prefix_pch
+#define Exercises_Prefix_pch
+
+//#define XS
+
+#ifdef __OBJC__
+
+#ifdef XS
+    #define XSLog(...) NSLog(__VA_ARGS__)
+#else
+    #define XSLog(...)
+#endif
+
+#endif
+
+#endif /* Exercises_Prefix_pch */

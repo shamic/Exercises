@@ -20,7 +20,7 @@ static NSString *cellId = @"cellId";
 @implementation XSExercisesCollectionViewCell
 
 - (void)dealloc {
-    NSLog(@"XSExercisesCollectionViewCell dealloc");
+    XSLog(@"XSExercisesCollectionViewCell dealloc");
 }
 
 - (void)awakeFromNib {
@@ -117,7 +117,13 @@ static NSString *cellId = @"cellId";
         return height + 20;
         
     }
-    NSString *string = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", self.exModel.options[self.exModel.answerIndex - 1]];
+    
+    NSString *string = @"";
+    if (self.exModel.answerIndex > self.exModel.options.count) {
+        string = @"✅正确答案：\n\n无答案";
+    } else {
+        string = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", self.exModel.options[self.exModel.answerIndex - 1]];
+    }
 
     CGFloat height = [self getHeightOfString:string font:[UIFont systemFontOfSize:16.0f] width:self.bounds.size.width - 30];
     return height + 50;
