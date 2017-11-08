@@ -7,5 +7,6 @@ target 'Exercises' do
 
   # Pods for Exercises
   pod 'BGFMDB', '~> 1.51'
+  pod 'ActionSheetPicker-3.0'
 
 end

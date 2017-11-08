@@ -8,10 +8,12 @@
 
 #import "XSHomeViewController.h"
 #import "XSExercisesViewController.h"
+#import "ActionSheetPicker.h"
 
 @interface XSHomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UILabel *itemBankLabel;
 
 @end
 
@@ -21,6 +23,23 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [UIView new];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        // TODO: item bank will come from db.
+        NSArray *itemBank = [NSArray arrayWithObjects:@"民生(499道)", @"题库二", @"题库三", @"题库四", nil];
+
+        [ActionSheetStringPicker showPickerWithTitle:@"选择一个题库" rows:itemBank initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                XSLog(@"Picker: %@, Index: %ld, value: %@", picker, (long)selectedIndex, selectedValue);
+                self.itemBankLabel.text = itemBank[selectedIndex];
+            } cancelBlock:^(ActionSheetStringPicker *picker) {
+                XSLog(@"Block Picker Canceled");
+            }
+        origin:self.view];
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

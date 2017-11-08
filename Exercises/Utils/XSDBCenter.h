@@ -17,4 +17,6 @@
 - (NSInteger)getLastNumberOfOrderQuestions;
 - (void)saveLastNumberOfOrderQuestions: (NSInteger)number;
 
+- (void)setItemBank:(NSString *_Nullable)bank;
+
 @end

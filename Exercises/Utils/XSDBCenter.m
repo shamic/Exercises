@@ -12,7 +12,7 @@
 #import "XSExercisesModel.h"
 
 @interface XSDBCenter()
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSString *itemBank;
 @end
 
 static XSDBCenter *dbCenter = nil;
@@ -52,6 +52,8 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     // 如果频繁操作数据库时,建议进行此设置(即在操作过程不关闭数据库);
     // bg_setDisableCloseDB(YES);
     bg_setSqliteName(@"Exercises");
+    
+    self.itemBank = singleExercisesTable;
 }
 
 - (void)getAllSingleExercisesDataOnComplete:(void (^)(NSArray * _Nullable))complete {
