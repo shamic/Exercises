@@ -173,7 +173,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.data.count + 1;
+    return self.data.count + (self.data.count>0?1:0);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {

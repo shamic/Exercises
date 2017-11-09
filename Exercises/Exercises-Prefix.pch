@@ -9,7 +9,7 @@
 #ifndef Exercises_Prefix_pch
 #define Exercises_Prefix_pch
 
-//#define XS
+#define XS
 
 #ifdef __OBJC__
 

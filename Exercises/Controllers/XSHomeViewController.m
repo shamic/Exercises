@@ -9,6 +9,7 @@
 #import "XSHomeViewController.h"
 #import "XSExercisesViewController.h"
 #import "ActionSheetPicker.h"
+#import "XSDBCenter.h"
 
 @interface XSHomeViewController ()
 
@@ -29,12 +30,12 @@
     if (indexPath.section == 0 && indexPath.row == 0) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        // TODO: item bank will come from db.
-        NSArray *itemBank = [NSArray arrayWithObjects:@"民生(499道)", @"题库二", @"题库三", @"题库四", nil];
+        NSArray *itemBank = [NSArray arrayWithArray:[[XSDBCenter shareManager] allItemBanks]];
 
-        [ActionSheetStringPicker showPickerWithTitle:@"选择一个题库" rows:itemBank initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        [ActionSheetStringPicker showPickerWithTitle:@"选择一个题库" rows:itemBank initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger  selectedIndex, id selectedValue) {
                 XSLog(@"Picker: %@, Index: %ld, value: %@", picker, (long)selectedIndex, selectedValue);
                 self.itemBankLabel.text = itemBank[selectedIndex];
+                [[XSDBCenter shareManager] setItemBank:itemBank[selectedIndex]];
             } cancelBlock:^(ActionSheetStringPicker *picker) {
                 XSLog(@"Block Picker Canceled");
             }

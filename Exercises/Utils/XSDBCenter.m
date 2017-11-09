@@ -12,11 +12,12 @@
 #import "XSExercisesModel.h"
 
 @interface XSDBCenter()
-@property (nonatomic, strong) NSString *itemBank;
+@property (nonatomic, strong) NSMutableDictionary *itemBanks;
+@property (nonatomic, strong) NSString *tableName;
 @end
 
 static XSDBCenter *dbCenter = nil;
-static NSString *singleExercisesTable = @"single_exercise";
+static NSString *defaultTable = @"single_exercise";
 static NSString *singleExercisesTablePrimaryKey = @"number";
 
 @implementation XSDBCenter
@@ -53,21 +54,39 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     // bg_setDisableCloseDB(YES);
     bg_setSqliteName(@"Exercises");
     
-    self.itemBank = singleExercisesTable;
+    self.itemBanks = [NSMutableDictionary dictionaryWithDictionary:@{@"民生-499题":@"single_exercise", @"CISP-515题":@"exercise_2", @"题库三":@"", @"题库四":@""}];
+    self.tableName = defaultTable;
+}
+
+- (NSArray *)allItemBanks {
+    return [self.itemBanks allKeys];
+}
+
+- (void)setItemBank:(NSString *)bank {
+    if (bank.length == 0) {
+        bank = defaultTable;
+    }
+    self.tableName = [self.itemBanks objectForKey:bank];
 }
 
 - (void)getAllSingleExercisesDataOnComplete:(void (^)(NSArray * _Nullable))complete {
-    NSString *condition = [NSString stringWithFormat:@"order by %@ asc",singleExercisesTablePrimaryKey];
-    [[BGDB shareManager] queryWithTableName:singleExercisesTable conditions:condition complete:^(NSArray * _Nullable array) {
-        NSMutableArray *arr = [NSMutableArray array];
-        for (NSDictionary *dic in array) {
-            XSExercisesModel *model = [[XSExercisesModel alloc] initWithDictionary:dic];
-            [arr addObject:model];
+    [[BGDB shareManager] isExistWithTableName:self.tableName complete:^(BOOL isSuccess) {
+        if (isSuccess) {
+            NSString *condition = [NSString stringWithFormat:@"order by %@ asc",singleExercisesTablePrimaryKey];
+            [[BGDB shareManager] queryWithTableName:self.tableName conditions:condition complete:^(NSArray * _Nullable array) {
+                NSMutableArray *arr = [NSMutableArray array];
+                for (NSDictionary *dic in array) {
+                    XSExercisesModel *model = [[XSExercisesModel alloc] initWithDictionary:dic];
+                    [arr addObject:model];
+                }
+                complete(arr);
+            }];
+            //关闭数据库
+            [[BGDB shareManager] closeDB];
+        } else {
+            XSLog(@"数据库表：%@，不存在", self.tableName);
         }
-        complete(arr);
     }];
-    //关闭数据库
-    [[BGDB shareManager] closeDB];
 }
 
 - (void)saveLastNumberOfOrderQuestions: (NSInteger)number {
