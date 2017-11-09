@@ -10,7 +10,6 @@
 		5CB3BA879EE84FACAFBC0B7D /* libPods-Exercises.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF4826A03ACF8382C6EF7122 /* libPods-Exercises.a */; };
 		5D18C1BD1FB02DD50097D18A /* Exercises.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5D18C1BC1FB02DD50097D18A /* Exercises.bundle */; };
 		5D18C1C01FB04F8E0097D18A /* XSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18C1BF1FB04F8E0097D18A /* XSHomeViewController.m */; };
-		5D3F50E81FB45FBC00AA9E28 /* exercise_3.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 5D3F50E71FB45FBC00AA9E28 /* exercise_3.xlsx */; };
 		5D9C9D251FAC4A87008E4945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C9D241FAC4A87008E4945 /* Assets.xcassets */; };
 		B10EB8161FAB59F40060C26E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B10EB8151FAB59F40060C26E /* AppDelegate.m */; };
 		B10EB81C1FAB59F40060C26E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B10EB81A1FAB59F40060C26E /* Main.storyboard */; };
@@ -32,7 +31,6 @@
 		5D18C1BC1FB02DD50097D18A /* Exercises.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Exercises.bundle; sourceTree = "<group>"; };
 		5D18C1BE1FB04F8E0097D18A /* XSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XSHomeViewController.h; sourceTree = "<group>"; };
 		5D18C1BF1FB04F8E0097D18A /* XSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XSHomeViewController.m; sourceTree = "<group>"; };
-		5D3F50E71FB45FBC00AA9E28 /* exercise_3.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = exercise_3.xlsx; sourceTree = "<group>"; };
 		5D5A01A41FB294F5000E5E61 /* Exercises-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Exercises-Prefix.pch"; sourceTree = "<group>"; };
 		5D9C9D241FAC4A87008E4945 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF4826A03ACF8382C6EF7122 /* libPods-Exercises.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Exercises.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +90,6 @@
 		B10EB8081FAB59F40060C26E = {
 			isa = PBXGroup;
 			children = (
-				5D3F50E71FB45FBC00AA9E28 /* exercise_3.xlsx */,
 				5D18C1BC1FB02DD50097D18A /* Exercises.bundle */,
 				B10EB8131FAB59F40060C26E /* Exercises */,
 				B10EB8121FAB59F40060C26E /* Products */,
@@ -242,7 +239,6 @@
 				B10EB8211FAB59F40060C26E /* LaunchScreen.storyboard in Resources */,
 				B1318E2B1FAD538E00BAFBDC /* README.md in Resources */,
 				5D9C9D251FAC4A87008E4945 /* Assets.xcassets in Resources */,
-				5D3F50E81FB45FBC00AA9E28 /* exercise_3.xlsx in Resources */,
 				B10EB81C1FAB59F40060C26E /* Main.storyboard in Resources */,
 				B1CA9A521FAD608B00AA2665 /* XSExercisesCollectionViewCell.xib in Resources */,
 				5D18C1BD1FB02DD50097D18A /* Exercises.bundle in Resources */,
@@ -267,7 +263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6E5650709B259D2B2980A050 /* [CP] Copy Pods Resources */ = {

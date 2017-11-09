@@ -54,7 +54,7 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     // bg_setDisableCloseDB(YES);
     bg_setSqliteName(@"Exercises");
     
-    self.itemBanks = [NSMutableDictionary dictionaryWithDictionary:@{@"民生-499题":@"single_exercise", @"CISP-515题":@"exercise_2", @"题库三":@"", @"题库四":@""}];
+    self.itemBanks = [NSMutableDictionary dictionaryWithDictionary:@{@"民生-499题":@"single_exercise", @"CISP-515题":@"exercise_2", @"CISP-780题":@"exercise_3"}];
     self.tableName = defaultTable;
 }
 
@@ -90,12 +90,13 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
 }
 
 - (void)saveLastNumberOfOrderQuestions: (NSInteger)number {
-    [[NSUserDefaults standardUserDefaults] setInteger:number forKey:@"lastNumber"];
+    [[NSUserDefaults standardUserDefaults] setObject:@{@"lastNumber":@(number)} forKey:self.tableName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSInteger)getLastNumberOfOrderQuestions {
-    NSInteger number = [[[NSUserDefaults standardUserDefaults] objectForKey:@"lastNumber"] integerValue];
+    NSDictionary *numberDic = [[NSUserDefaults standardUserDefaults] objectForKey:self.tableName];
+    NSInteger number = [[numberDic objectForKey:@"lastNumber"] integerValue];
     return number;
 }
 
