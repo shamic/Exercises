@@ -119,7 +119,7 @@ static NSString *cellIdentifier = @"cellIdentifier";
 - (void)getData {
     __weak typeof(self) weakSelf = self;
 
-    [[XSDBCenter shareManager] getAllSingleExercisesDataOnComplete:^(NSArray * _Nullable array) {
+    [[XSDBCenter shareManager] getAllExercisesDataOnComplete:^(NSArray * _Nullable array) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
 
         if (strongSelf.type == AnswerTypeOrderQuestions) {

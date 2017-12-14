@@ -21,4 +21,6 @@
 
 #endif
 
+#import "XSConstants.h"
+
 #endif /* Exercises_Prefix_pch */

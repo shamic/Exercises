@@ -34,7 +34,7 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
 
 - (void)copyDBFileToDocumentPath {
     NSFileManager * manager = [NSFileManager defaultManager];
-    NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *document = kDocumentPath;
     NSString *dbPathStr = [[NSBundle mainBundle] pathForResource:@"Exercises" ofType:@"bundle"];
     NSURL *srcUrl = [NSURL URLWithString:[dbPathStr stringByAppendingPathComponent:@"Exercises.db"]];
     NSURL *dstUrl = [NSURL URLWithString:[document stringByAppendingString:@"/Exercises.db"]];
@@ -69,7 +69,7 @@ static NSString *singleExercisesTablePrimaryKey = @"number";
     self.tableName = [self.itemBanks objectForKey:bank];
 }
 
-- (void)getAllSingleExercisesDataOnComplete:(void (^)(NSArray * _Nullable))complete {
+- (void)getAllExercisesDataOnComplete:(void (^)(NSArray * _Nullable))complete {
     [[BGDB shareManager] isExistWithTableName:self.tableName complete:^(BOOL isSuccess) {
         if (isSuccess) {
             NSString *condition = [NSString stringWithFormat:@"order by %@ asc",singleExercisesTablePrimaryKey];
