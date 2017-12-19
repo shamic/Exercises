@@ -11,8 +11,7 @@
 
 typedef enum : NSUInteger {
     ExercisesTypeSingle,
-    ExercisesTypeExtended,
-    ExercisesTypeTrueOrFalse
+    ExercisesTypeExtended
 } ExercisesType;
 
 @interface XSExercisesModel : NSObject
@@ -21,9 +20,18 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) ExercisesType type;
 @property (nonatomic, strong) NSArray *options;
+
 @property (nonatomic, assign) NSInteger answerIndex;
 @property (nonatomic, assign) NSInteger selectedIndex; // 默认值 0: 未选择过
 
+@property (nonatomic, strong) NSArray *answers;
+@property (nonatomic, strong) NSMutableArray *selectedAnswers;
+
 - (XSExercisesModel *)initWithDictionary: (NSDictionary *)dic;
+- (NSString *)getShortAnswer;
+- (void)selectedRow:(NSInteger)row;
+- (BOOL)isSelected:(NSInteger)row;
+- (BOOL)isCorrectAnswer:(NSInteger)row;
+- (BOOL)isCorrect;
 
 @end

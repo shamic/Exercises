@@ -12,6 +12,7 @@
 @interface XSExercisesCollectionViewCell()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (assign, nonatomic) BOOL completeSubmit;
 
 @end
 
@@ -64,44 +65,89 @@ static NSString *cellId = @"cellId";
     cell.backgroundColor = [UIColor backgroundColor];
     cell.textLabel.textColor = [UIColor titleColor];
     
-    if (indexPath.section == 0) {
-        if (self.exModel.selectedIndex != 0) { // 选择过
-            // 正确答案高亮
-            if (indexPath.row + 1 == self.exModel.answerIndex) {
-                cell.textLabel.textColor = [UIColor redColor];
+    if (self.exModel.type == ExercisesTypeSingle) {
+        if (indexPath.section == 0) {
+            if (self.exModel.selectedIndex != 0) { // 选择过
+                // 正确答案高亮
+                if (indexPath.row + 1 == self.exModel.answerIndex) {
+                    cell.textLabel.textColor = [UIColor redColor];
+                }
+                
+                if (self.exModel.selectedIndex == self.exModel.answerIndex) {
+                    // 对
+                    if (indexPath.row + 1 == self.exModel.selectedIndex) {
+                        cell.backgroundColor = [UIColor greenColor];
+                    }
+                } else {
+                    // 错
+                    if (indexPath.row + 1 == self.exModel.selectedIndex) {
+                        cell.backgroundColor = [UIColor greenColor];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", self.exModel.options[indexPath.row], @"❌"];
+                    }
+                }
             }
-            
-            if (self.exModel.selectedIndex == self.exModel.answerIndex) {
-                // 对
-                if (indexPath.row + 1 == self.exModel.selectedIndex) {
-                    cell.backgroundColor = [UIColor greenColor];
+        } else {
+            NSString *answer = @"";
+            if (self.exModel.answerIndex > self.exModel.options.count) {
+                answer = @"无答案";
+            } else {
+                answer = self.exModel.options[self.exModel.answerIndex - 1];
+            }
+            cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", answer];
+        }
+    } else if (self.exModel.type == ExercisesTypeExtended) {
+        if (indexPath.section == 0) {
+            if (self.completeSubmit) {
+                if ([self.exModel isSelected:indexPath.row]) {
+                    if ([self.exModel isCorrectAnswer:indexPath.row]) {
+                        cell.textLabel.textColor = [UIColor redColor];
+                        cell.backgroundColor = [UIColor greenColor];
+                    } else {
+                        cell.backgroundColor = [UIColor greenColor];
+                        cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", self.exModel.options[indexPath.row], @"❌"];
+                    }
+                } else {
+                    if ([self.exModel isCorrectAnswer:indexPath.row]) {
+                        cell.textLabel.textColor = [UIColor redColor];
+                    } else {
+                    }
                 }
             } else {
-                // 错
-                if (indexPath.row + 1 == self.exModel.selectedIndex) {
+                if ([self.exModel isSelected:indexPath.row]) {
                     cell.backgroundColor = [UIColor greenColor];
-                    cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", self.exModel.options[indexPath.row], @"❌"];
+                } else {
+                    cell.backgroundColor = [UIColor backgroundColor];
                 }
             }
+        } else if (indexPath.section == 1) {
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:20.0f];
+            cell.textLabel.text = @"<提 交>";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textColor = [UIColor blueColor];
+        } else {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：", [self.exModel getShortAnswer]];
         }
     } else {
-        NSString *answer = @"";
-        if (self.exModel.answerIndex > self.exModel.options.count) {
-            answer = @"无答案";
-        } else {
-            answer = self.exModel.options[self.exModel.answerIndex - 1];
-        }
-        cell.textLabel.text = [NSString stringWithFormat:@"%@    %@", @"✅正确答案：\n\n", answer];
+        cell.textLabel.text = @"未知类型";
     }
     
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.exModel.selectedIndex != 0 || self.isShowAnswer) {
+    if (self.exModel.type == ExercisesTypeSingle) {
+        if (self.exModel.selectedIndex != 0 || self.isShowAnswer) {
+            return 2;
+        }
+        return 1;
+    } else if (self.exModel.type == ExercisesTypeExtended) {
+        if ((self.exModel.selectedAnswers.count != 0 && self.completeSubmit) || self.isShowAnswer) {
+            return 3;
+        }
         return 2;
+    } else {
+        return 0;
     }
-    return 1;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -115,9 +161,16 @@ static NSString *cellId = @"cellId";
     if (indexPath.section == 0) {
         CGFloat height = [self getHeightOfString:self.exModel.options[indexPath.row] font:[UIFont systemFontOfSize:16.0f] width:self.bounds.size.width - 30];
         return height + 20;
-        
     }
     
+    // ExercisesTypeExtended
+    if (self.exModel.type == ExercisesTypeExtended && indexPath.section == 1) {
+        return 80.0f;
+    } else if (self.exModel.type == ExercisesTypeExtended && indexPath.section == 2) {
+        return 80.0f;
+    }
+    
+    // ExercisesTypeSimple
     NSString *string = @"";
     if (self.exModel.answerIndex > self.exModel.options.count) {
         string = @"✅正确答案：\n\n无答案";
@@ -131,23 +184,36 @@ static NSString *cellId = @"cellId";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
+    //  ExercisesTypeSingle
+    if (indexPath.section == 0 && self.exModel.type == ExercisesTypeSingle) {
         if (self.exModel.selectedIndex != 0) {
             return;
         }
         
         self.exModel.selectedIndex = indexPath.row+1;
         [self.tableView reloadData];
-
-//        if (self.exModel.selectedIndex != self.exModel.answerIndex) {
-//            // 选择错误❌
-//            [self.tableView reloadData];
-//            return;
-//        }
+        
         if ([self.delegate respondsToSelector:@selector(didSelectedCellWithItem:)]) {
             [self.delegate didSelectedCellWithItem:self.exModel];
         }
     }
+    //  ExercisesTypeExtended
+    if (indexPath.section == 0 && self.exModel.type == ExercisesTypeExtended) {
+        [self.exModel selectedRow:indexPath.row];
+        [self.tableView reloadData];
+    } else if (indexPath.section == 1 && self.exModel.type == ExercisesTypeExtended) {
+        if (self.exModel.selectedAnswers.count > 0) {
+            self.completeSubmit = YES;
+            [self.tableView reloadData];
+            
+            if ([self.delegate respondsToSelector:@selector(didSelectedCellWithItem:)]) {
+                [self.delegate didSelectedCellWithItem:self.exModel];
+            }
+        } else {
+            // TODO: toast tips
+        }
+    }
+    
 }
 
 #define mark - custom method

@@ -197,16 +197,15 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 #pragma mark - XSExercisesCollectionViewCellDelegate
 - (void)didSelectedCellWithItem:(XSExercisesModel *)item {
-    
-    if (item.selectedIndex != item.answerIndex) {
-        [self.failureArr addObject:item];
-    } else if (item.selectedIndex == item.answerIndex) {
+    if ([item isCorrect]) {
         [self.correctArr addObject:item];
+    } else {
+        [self.failureArr addObject:item];
     }
     
     NSInteger row = [[self.collectionView indexPathsForVisibleItems] firstObject].row + 1;
     if (row < self.data.count) {
-        if (item.selectedIndex != item.answerIndex) {
+        if (![item isCorrect]) {
             // 选择错误❌
             return;
         }
