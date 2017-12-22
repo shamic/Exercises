@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nCF-AY-AjX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nCF-AY-AjX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Exersices-->
         <scene sceneID="azH-ZW-gNh">
             <objects>
-                <tableViewController id="OXC-Yi-eW5" customClass="XSHomeViewController" sceneMemberID="viewController">
+                <tableViewController title="Exersices" id="OXC-Yi-eW5" customClass="XSHomeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="PfY-Kq-69y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,10 +47,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="hQh-29-5Vg">
+                            <tableViewSection headerTitle="开始训练" id="hQh-29-5Vg">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="P4M-Me-mhk">
-                                        <rect key="frame" x="0.0" y="135.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P4M-Me-mhk" id="0pT-bj-kgh">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -77,7 +77,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="HzT-E9-Lqb">
-                                        <rect key="frame" x="0.0" y="179.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HzT-E9-Lqb" id="5Zr-n2-y0z">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -121,7 +121,7 @@
                             <outlet property="delegate" destination="OXC-Yi-eW5" id="kB2-V0-DIp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0wd-PI-vZk"/>
+                    <navigationItem key="navigationItem" title="Exersices" id="0wd-PI-vZk"/>
                     <connections>
                         <outlet property="itemBankLabel" destination="Lff-z7-HQy" id="vgI-Ph-kRZ"/>
                         <outlet property="textField" destination="lWM-uo-os1" id="Tzb-cT-fAU"/>
@@ -208,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="1452" y="141.67916041979012"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Exersices-->
         <scene sceneID="f4J-j0-xhV">
             <objects>
-                <navigationController id="nCF-AY-AjX" sceneMemberID="viewController">
+                <navigationController title="Exersices" id="nCF-AY-AjX" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DAz-PW-3cg">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XSDBCenter.h"
+#import "BRAOfficeDocumentPackage.h"
 
 @interface AppDelegate ()
 
@@ -19,11 +20,69 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [XSDBCenter shareManager];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options
 {
+    __weak typeof(self) weakSelf = self;
+    NSString *message = [NSString stringWithFormat:@"接收到文件《%@》，是否导入数据库？", url.absoluteString.lastPathComponent];
+    [XSAlertView showAlertWithTitle:@"提示" message:message buttonTilte:@"导入" cancelButtonTitle:@"取消" origin:weakSelf.window.rootViewController onHandler:^(UIAlertAction *action) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+
+        if (action.style == UIAlertActionStyleDefault) {
+            XSLog(@"default");
+            [SVProgressHUD showProgress:0.0 status:@"正在导入..."];
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [strongSelf readFile:url];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SVProgressHUD showSuccessWithStatus:@"导入成功"];
+                });
+            });
+        } else if (action.style == UIAlertActionStyleCancel) {
+            XSLog(@"cancel");
+        } else {
+            XSLog(@"undefined");
+        }
+    }];
+    
+    
+    return YES;
+}
+
+
+- (BOOL)readFile:(NSURL *)url {
+    BRAOfficeDocumentPackage *spreadsheet = [BRAOfficeDocumentPackage open:url.path];
+    BRAWorksheet *firstWorksheet = spreadsheet.workbook.worksheets[0]; //exercises
+    
+    //    NSString *errorValue = nil;
+    //    if ([[firstWorksheet cellForCellReference:@"D2"] hasError]) {
+    //        errorValue = [[firstWorksheet cellForCellReference:@"D2"] stringValue];
+    //        NSLog(@"errorValue: %@", errorValue);
+    //    }
+    NSString *temp = @"C";
+    for (NSInteger i = 1; i < firstWorksheet.rows.count; i++) {
+        temp = [temp stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)i]];
+        BRACell *cell = [firstWorksheet cellForCellReference:temp];
+        NSString *formula = [cell stringValue];
+        if (formula.length == 0) {
+            temp = @"C";
+            continue;
+        }
+        NSLog(@"%@: %@", temp, formula);
+        temp = @"C";
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showProgress:(float)i / firstWorksheet.rows.count status:@"正在导入..."];
+        });
+    }
+    //    NSString *formula = [[firstWorksheet cellForCellReference:@"D2"] formulaString];
+    //    NSString *string = [[firstWorksheet cellForCellReference:@"D2"] stringValue];
+    //
+    //    NSLog(@"D2: %@\nD2: %@", formula, string);
     return YES;
 }
 

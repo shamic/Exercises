@@ -22,5 +22,7 @@
 #endif
 
 #import "XSConstants.h"
+#import <SVProgressHUD.h>
+#import "XSAlertView.h"
 
 #endif /* Exercises_Prefix_pch */

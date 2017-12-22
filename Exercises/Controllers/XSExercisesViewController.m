@@ -68,7 +68,6 @@ static NSString *cellIdentifier = @"cellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.topItem.title = @"";
     if (self.type == AnswerTypeOrderQuestions) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(jumpTo)];
     }
