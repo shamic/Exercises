@@ -1,0 +1,30 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/introduction/introduction",
+    "pages/contact/contact"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#58a1db",
+    "navigationBarTitleText": "万合学校",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "selectedColor": "#58a1db",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "pages/images/home-icon.png",
+        "selectedIconPath": "pages/images/home-icon-selected.png"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "text": "联系我们",
+        "iconPath": "pages/images/support.png",
+        "selectedIconPath": "pages/images/support_selected.png"
+      }
+    ]
+  }
+}
