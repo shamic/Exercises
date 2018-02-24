@@ -1,56 +1,120 @@
 <!--pages/home/home.wxml-->
 
- <!--首页，轮播图-->
-    <swiper class="banner-swiper" indicator-dots="{{ indicatorDots }}" autoplay="{{ autoplay }}" interval="{{ interval }}" duration="{{ duration }}" indicator-color='#FFFFFF' indicator-active-color='#58a1db'>
+<!--首页，轮播图-->
+ <swiper class="banner-swiper" indicator-dots="{{ indicatorDots }}" autoplay="{{ autoplay }}" interval="{{ interval }}" duration="{{ duration }}" indicator-color='#FFFFFF' indicator-active-color='#58a1db'>
         <swiper-item class="swiper-item" wx:for="{{ banners }}" wx:key="item">
           <navigator url="../detail/detail?id={{ item }}">
             <image src="{{ item }}" class="slide-image"></image>
           </navigator>
         </swiper-item>
-    </swiper>
+    </swiper> 
 
-    <view style='margin:0 50rpx;'>
-      <navigator url="../introduction/introduction">
-         <view style='text-align:center;margin:20rpx;width:108rpx;'>
-          <image style='width:108rpx;height:108rpx;' src="../images/logo.png" ></image>
-          <text style='font-size:26rpx;text-align: center;'>简介</text>
-         </view>
-      </navigator>
+ <view class="shelf-nav" wx:key="objectId">
+      <view class="shelf-nav-item">
+        <navigator url="../introduction/introduction">
+          <image src="../images/logo.png" class="shelf-nav-item__image"></image>
+          <text class="shelf-nav-item__text">简介</text>
+        </navigator>
+      </view>
+      <view class="shelf-nav-item">
+        <navigator url="../introduction/introduction">
+          <image src="../images/logo.png" class="shelf-nav-item__image"></image>
+          <text class="shelf-nav-item__text">简介</text>
+        </navigator>
+      </view>
+      <view class="shelf-nav-item">
+        <navigator url="../introduction/introduction">
+          <image src="../images/logo.png" class="shelf-nav-item__image"></image>
+          <text class="shelf-nav-item__text">简介</text>
+        </navigator>
+      </view>
+      <view class="shelf-nav-item">
+        <navigator url="../introduction/introduction">
+          <image src="../images/logo.png" class="shelf-nav-item__image"></image>
+          <text class="shelf-nav-item__text">简介</text>
+        </navigator>
+      </view>
+    </view> 
+
+<view style='margin: 30rpx;'>
+  <view class="list_header">
+    <view class="list_header_left">
+      <image mode="aspectFill" src="../images/logo.png" wx:if="userPic"></image>
+      <view>username</view>
     </view>
-
-<block wx:for="{{homeItems}}" wx:for-item="item" wx:key="objectId">
-    <!--首页，轮播图-->
-    <swiper class="banner-swiper" wx:if="{{item.uiType == 'banner'}}" indicator-dots="{{ indicatorDots }}" autoplay="{{ autoplay }}" interval="{{ interval }}" duration="{{ duration }}" indicator-color='#202020' indicator-active-color='#FFFFFF'>
-        <swiper-item class="swiper-item" wx:for="{{ item.cells }}" wx:key="imageUrl">
-          <navigator url="../detail/detail?id={{ item.productId }}">
-            <image src="{{ item.imageUrl }}" class="slide-image"></image>
-          </navigator>
-        </swiper-item>
-    </swiper>
-    
-    <!--货架分类-->
-    <view class="shelf-nav" wx:if="{{item.uiType == 'interface'}}" wx:key="objectId">
-      <view class="shelf-nav-item" wx:for="{{ item.cells }}" wx:key="imageUrl">
-        <navigator url="../classifyDetail/classifyDetail?id={{ item.id }}">
-          <image src="{{ item.imageUrl }}" class="shelf-nav-item__image"></image>
-          <text class="shelf-nav-item__text">{{ item.attributes.descOnline }}</text>
+    <view class="list_header_right">2017-2-23 21:22:12</view>
+  </view>
+  <view class='content'>
+    <text class='content-text' space='emsp'>  您购买的商品需要消磁，请在消磁处消磁后出场，期待您的下次光临。</text>
+    <view class='shelf-article'>
+      <view class="shelf-article-item">
+        <navigator url="../detail/detail">
+          <image src="{{banners[3]}}" class="shelf-article-item__image"></image>
+        </navigator>
+      </view>
+      <view class="shelf-article-item">
+        <navigator url="../detail/detail">
+          <image src="{{banners[3]}}" class="shelf-article-item__image"></image>
+        </navigator>
+      </view>
+      <view class="shelf-article-item">
+        <navigator url="../detail/detail">
+          <image src="{{banners[3]}}" class="shelf-article-item__image"></image>
         </navigator>
       </view>
     </view>
+  </view>
+</view>
 
-    <!--主题-->
-    <view class="scroll-view-nav" wx:if="{{item.uiType == 'normal'}}" wx:key="objectId">
-        <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
-            <view class="scroll-view-item_H" wx:for="{{ item.cells }}" wx:key="imageUrl">
-              <navigator url="#">
-                <image src="{{ item.imageUrl }}" class="scroll-view-item__image"></image>
-              </navigator>
-            </view>
-        </scroll-view>
+<navigator url="../write/write">
+  <image class="bottom-enter-btn" hidden="{{false}}" src="../images/float_keyin_code@2x.png" background-size="cover"></image>
+</navigator>
+<!-- <view>
+      <view class='card'>
+        <view class='user'>
+          <image style='width:50rpx;height:50rpx;' src='../images/logo.png'></image>
+          <text>username</text>
+        </view>
+        <view class='content'>发布内容</view>
+        <view class='img-content'>
+          <image style='' src='{{banners[3]}}'></image>
+        </view>
+      </view>
+    </view> -->
+
+<block wx:for="{{homeItems}}" wx:for-item="item" wx:key="objectId">
+  <!--首页，轮播图-->
+  <swiper class="banner-swiper" wx:if="{{item.uiType == 'banner'}}" indicator-dots="{{ indicatorDots }}" autoplay="{{ autoplay }}" interval="{{ interval }}" duration="{{ duration }}" indicator-color='#202020' indicator-active-color='#FFFFFF'>
+    <swiper-item class="swiper-item" wx:for="{{ item.cells }}" wx:key="imageUrl">
+      <navigator url="../detail/detail?id={{ item.productId }}">
+        <image src="{{ item.imageUrl }}" class="slide-image"></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
+
+  <!--货架分类-->
+  <view class="shelf-nav" wx:if="{{item.uiType == 'interface'}}" wx:key="objectId">
+    <view class="shelf-nav-item" wx:for="{{ item.cells }}" wx:key="imageUrl">
+      <navigator url="../classifyDetail/classifyDetail?id={{ item.id }}">
+        <image src="{{ item.imageUrl }}" class="shelf-nav-item__image"></image>
+        <text class="shelf-nav-item__text">{{ item.attributes.descOnline }}</text>
+      </navigator>
     </view>
+  </view>
 
-    <!--商品-->
-    <view class="product-list" wx:if="{{item.uiType == 'item'}}" wx:key="objectId">
+  <!--主题-->
+  <view class="scroll-view-nav" wx:if="{{item.uiType == 'normal'}}" wx:key="objectId">
+    <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+      <view class="scroll-view-item_H" wx:for="{{ item.cells }}" wx:key="imageUrl">
+        <navigator url="#">
+          <image src="{{ item.imageUrl }}" class="scroll-view-item__image"></image>
+        </navigator>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!--商品-->
+  <view class="product-list" wx:if="{{item.uiType == 'item'}}" wx:key="objectId">
     <block wx:for="{{ item.cells }}" wx:key="imageUrl">
       <view class="product-card">
         <navigator class="nav-product-card" url="../detail/detail?productId={{ item.productId }}">
@@ -61,11 +125,11 @@
             <text class="product-title">{{ item.attributes.descOnline }}</text>
             <view class="price-view">
               <text class="product-price">￥{{ item.attributes.priceWithTax }}</text>
-            <text class="product-wasPrice" wx:if="{{item.attributes.wasPrice > 0}}">¥ {{ item.attributes.wasPrice}}</text>
-          </view>
+              <text class="product-wasPrice" wx:if="{{item.attributes.wasPrice > 0}}">¥ {{ item.attributes.wasPrice}}</text>
             </view>
+          </view>
         </navigator>
       </view>
     </block>
-    </view>
+  </view>
 </block>

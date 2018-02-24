@@ -1,2 +1,26 @@
 <!--pages/contact/contact.wxml-->
+<view style='margin: 0 50rpx;'>
 
+  <view style='height: 260rpx;display: flex;flex-direction: row;justify-content: space-between;'>
+    <text style='font-size: 40rpx;color: #454545;line-height: 260rpx;padding-left: 30rpx;'>我要配送</text>
+    <image style='width: 160rpx;height: 160rpx;padding-top: 50rpx;padding-right: 0rpx;' src="../images/logo.png"></image>
+  </view>
+
+  <view style='height: 1px;border-top:1px dashed #000; '></view>
+
+  <view style='display: flex;justify-content:space-between;align-items:center;margin: 40rpx 0;'>
+    <view style='display: flex;align-items:center;'>
+      <image style='width:32rpx;height:40rpx;flex-shrink:0;' src="../images/location_icon@2x.png"></image>
+      <view style='margin-left: 10rpx;color:#666666'>address</view>
+    </view>
+    <image style='width:20rpx;height:34rpx;flex-shrink:0;' src="../images/scan_arrows_icon.png"></image>
+  </view>
+
+  <view style='display: flex;justify-content:space-between;align-items:center;margin: 40rpx 0;'>
+    <view style='display: flex;align-items:center;'>
+      <image style='width:32rpx;height:40rpx;flex-shrink:0;' src="../images/location_icon@2x.png"></image>
+      <view style='margin-left: 10rpx;color:#666666'>tel-phone</view>
+    </view>
+    <image style='width:20rpx;height:34rpx;flex-shrink:0;' src="../images/scan_arrows_icon.png"></image>
+  </view>
+</view>

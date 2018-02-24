@@ -1,0 +1,26 @@
+<!--pages/write/write.wxml-->
+
+<form bindsubmit="sendNewMood">
+  <input style='font-size: 14px;' placeholder="输入标题（选）" class="add_title" value="" bindinput="setTitle" name="title" /> 
+  <view class="addConent">
+    <textarea style='font-size: 14px;' placeholder="输入发布信息内容" maxlength="1000" value="" name="content" />
+  </view>
+
+  <!-- <label for="changePublic">
+    <switch checked="{{isPublic}}" bindchange="changePublic" type="checkbox" name="is_hide" />
+    <text>邮寄心情</text>
+  </label> -->
+
+  <view wx:for="{{images}}" wx:key="id" class="image_box">
+    <view class="picPre">
+      <image src="{{item}}" mode="aspectFit"></image>
+      <view bindtap="clearPic" data-id="{{item}}"></view>
+    </view>
+  </view>
+
+  <view class="add_pic" bindtap="uploadPic" wx-if="{{true}}">
+     <view style='font-size: 14px;'>添加图片（选）</view> 
+  </view>
+  
+  <button loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">发布</button>
+</form>

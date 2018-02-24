@@ -2,6 +2,8 @@
   "pages":[
     "pages/home/home",
     "pages/introduction/introduction",
+    "pages/detail/detail",
+    "pages/write/write",
     "pages/contact/contact"
   ],
   "window":{

@@ -14,6 +14,55 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+var canUseWxLoading = true
+//加载对话框的显示和隐藏
+function showLoadingDialog() {
+  try {
+    if (wx.canIUse('showLoading')) {
+      canUseWxLoading = true;
+    } else {
+      canUseWxLoading = false;
+    }
+  } catch (e) {
+    canUseWxLoading = false;
+  }
+  if (canUseWxLoading) {
+    wx.showLoading({
+      title: "加载中",
+      mask: true
+    });
+  } else {
+    wx.showToast({
+      title: "加载中",
+      icon: 'loading',
+      mask: true,
+      duration: 60000
+    });
+  }
+
+}
+
+function hideLoadingDialog() {
+  if (canUseWxLoading) {
+    wx.hideLoading();
+  } else {
+    wx.hideToast();
+  }
+}
+
+function showErrorTip(content) {
+  wx.showModal({
+    title: '提示',
+    content: content,
+    showCancel: false,
+    success: function (res) {
+    }
+  })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  showLoadingDialog: showLoadingDialog,
+  hideLoadingDialog: hideLoadingDialog,
+  showErrorTip: showErrorTip
 }

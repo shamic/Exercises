@@ -1,0 +1,16 @@
+<!--pages/detail/detail.wxml-->
+<view style='margin: 30rpx;'>
+  <view class="list_header">
+    <view class="list_header_left">
+      <image mode="aspectFill" src="../images/logo.png" wx:if="userPic"></image>
+      <view>username</view>
+    </view>
+    <view class="list_header_right">2017-2-23 21:22:12</view>
+  </view>
+  <view class='content'>
+    <text space='emsp'>  您购买的商品需要消磁，请在消磁处消磁后出场，期待您的下次光临。</text>
+    <view class='img-content'>
+      <image style='' src='{{banners[3]}}'></image>
+    </view>
+  </view>
+</view>
