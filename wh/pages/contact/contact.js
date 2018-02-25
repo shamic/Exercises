@@ -15,6 +15,21 @@ Page({
   
   },
 
+  openMap: function (e) {
+    wx.openLocation({
+      latitude: 41.6799300000,
+      longitude: 123.4221300000,
+      name: "万合学校",
+      address: "辽宁省沈阳市东陵区白塔街233号"
+    })
+  },
+
+  callPhone: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: '13888888888',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

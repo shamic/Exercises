@@ -1,15 +1,21 @@
 <!--pages/introduction/introduction.wxml-->
-<view style=''>
-  <view style='display:flex;justify-content:center;'>
-    <image src='../images/logo.jpg' mode='aspectFit'></image>
+<view style='padding-bottom:30rpx;'>
+  <view style='display:flex;justify-content:center;' wx:if="{{article.topImage != null}}">
+    <image style='width:100%;' src='{{article.topImage}}' mode='aspectFill'></image>
   </view>
-  <view style='font-size:40rpx;font-weight:700;margin: 20rpx 60rpx;'>
-    <text>沈阳万合职业技术学校</text>
+  <view style='font-size:40rpx;font-weight:700;margin: 20rpx 60rpx;' wx:if="{{article.title != null}}">
+    <text>{{article.title}}</text>
   </view>
-  <view style='font-size:34rpx;margin: 20rpx 60rpx;'>
-    <text space='emsp' style='line-height:32px;'>  辽宁万合职业教育集团成立于1999年，集团下设沈阳万合汽车电子技术学校和铁岭装备制造学校，集团化的办学模式。沈阳万合汽车电子技术学校座落于中国重工业基地，东北三省的经济文化中心城市沈阳，创建于1999年，位于沈阳市东陵区白塔街233号。是辽宁省政府批准，省人资和社会保障厅备案，沈阳市人资和社会保障局主管的，以培养高素质的高、中级专业技能人才为宗旨的民办技工学校。铁岭装备制造学校创建于2008年，是辽宁省教育厅批准备案，铁岭市教育局主管一所中等职业学校。</text>
+  <view style='font-size:34rpx;margin: 20rpx 60rpx;' wx:if="{{article.topContent != null}}">
+    <text space='emsp' style='line-height:32px;'>{{article.topContent}}</text>
   </view>
-  <view style='font-size:34rpx;margin: 20rpx 60rpx;'>
-    <text space='emsp' style='line-height:32px;'>  沈阳万合汽车电子技术学校是以汽车及汽车相关产业为主干的综合性职业学校。历年来多次被列为省高级技能人才培训基地，省外商投资企业制订人才培训基地，省就业局指定汽车专业人才、工程机械装载机、挖掘机、地铁安检人员培训基地，同年荣获辽宁省优秀民办学校，就业先进单位和民办示范学校称号。</text>
+  <view style='display:flex;justify-content:center;' wx:if="{{article.centerImage != null}}">
+    <image style='width:85%;' src='{{article.centerImage}}' mode='aspectFill'></image>
+  </view>
+  <view style='font-size:34rpx;margin: 20rpx 60rpx;' wx:if="{{article.centerContent != null}}">
+    <text space='emsp' style='line-height:32px;'>{{article.centerContent}}</text>
+  </view>
+  <view style='display:flex;justify-content:center;' wx:if="{{article.bottomImage != null}}">
+    <image style='width:100%;' src='{{article.bottomImage}}' mode='aspectFill'></image>
   </view>
 </view>

@@ -1,26 +1,51 @@
 <!--pages/contact/contact.wxml-->
 <view style='margin: 0 50rpx;'>
 
-  <view style='height: 260rpx;display: flex;flex-direction: row;justify-content: space-between;'>
-    <text style='font-size: 40rpx;color: #454545;line-height: 260rpx;padding-left: 30rpx;'>我要配送</text>
-    <image style='width: 160rpx;height: 160rpx;padding-top: 50rpx;padding-right: 0rpx;' src="../images/logo.png"></image>
+  <view style='height: 240rpx;display: flex;flex-direction: row;justify-content: space-between;'>
+    <text style='font-weight:700;font-size: 40rpx;color: #454545;line-height: 240rpx;'>沈阳万合职业技术学校</text>
+    <image style='width: 140rpx;height: 140rpx;padding-top: 50rpx;padding-right: 0rpx;' src="../images/logo.png"></image>
   </view>
 
   <view style='height: 1px;border-top:1px dashed #000; '></view>
 
-  <view style='display: flex;justify-content:space-between;align-items:center;margin: 40rpx 0;'>
-    <view style='display: flex;align-items:center;'>
-      <image style='width:32rpx;height:40rpx;flex-shrink:0;' src="../images/location_icon@2x.png"></image>
-      <view style='margin-left: 10rpx;color:#666666'>address</view>
+  <view class='cell-wrap' bindtap='openMap'>
+    <view class='cell'>
+      <image class='cell-icon' src="../images/location_icon@2x.png"></image>
+      <view class='cell-title'>辽宁省沈阳市东陵区白塔街233号</view>
     </view>
-    <image style='width:20rpx;height:34rpx;flex-shrink:0;' src="../images/scan_arrows_icon.png"></image>
+    <image class='cell-arrows' src="../images/scan_arrows_icon.png"></image>
   </view>
 
-  <view style='display: flex;justify-content:space-between;align-items:center;margin: 40rpx 0;'>
-    <view style='display: flex;align-items:center;'>
-      <image style='width:32rpx;height:40rpx;flex-shrink:0;' src="../images/location_icon@2x.png"></image>
-      <view style='margin-left: 10rpx;color:#666666'>tel-phone</view>
+  <view class='cell-wrap'>
+    <view class='cell'>
+      <image class='cell-icon' src="../images/man-user.png"></image>
+      <view class='cell-title'>李主任</view>
     </view>
-    <image style='width:20rpx;height:34rpx;flex-shrink:0;' src="../images/scan_arrows_icon.png"></image>
   </view>
+
+  <view class='cell-wrap' bindtap='callPhone'>
+    <view class='cell'>
+      <image class='cell-icon' src="../images/phone-receiver.png"></image>
+      <view class='cell-title'>13888888888</view>
+    </view>
+    <image class='cell-arrows' src="../images/scan_arrows_icon.png"></image>
+  </view>
+
+  <view class='cell-wrap'>
+    <view class='cell'>
+      <image class='cell-icon' src="../images/wechat.png"></image>
+      <view class='cell-title'>ice3362</view>
+    </view>
+  </view>
+
+  <view class='cell-wrap'>
+    <view class='cell'>
+      <image class='cell-icon' src="../images/clock.png"></image>
+      <view class='cell-title'>9:00-22:00</view>
+    </view>
+  </view>
+
+  <view style='display:flex;justify-content:center;'>
+    <image style='width:400rpx;height:400rpx;' src="../images/wx_barcode.png"></image>
+  </view>  
 </view>

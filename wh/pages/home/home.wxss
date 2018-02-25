@@ -23,14 +23,14 @@ swiper {
 
 .shelf-nav-item {
   width: 25%; /*因为每行显示 4 个货架，所以宽度设置为 25%*/
-  margin-bottom: 20rpx;
   text-align: center; /*让它中间的图片和标题居中显示*/
+  margin:10px 0;
 }
 
 .shelf-nav-item__image {
-  width: 130rpx; /*在视觉稿中量取图片宽高为 130px*/
-  height: 130rpx; /*于是设置 width 和 height 都设置为130rpx*/
-  border-radius: 50%; /*把图片设置成圆形*/
+  width: 64px; /*在视觉稿中量取图片宽高为 130px*/
+  height: 64px; /*于是设置 width 和 height 都设置为130rpx*/
+  /* border-radius: 50%; 把图片设置成圆形 */
   /* border: 1px solid #d9d9d9; 加上外边框 */
 }
 
@@ -194,4 +194,24 @@ swiper {
   height: 116rpx;
   bottom: 25rpx;
   z-index: 1;
+}
+
+.bottom-message-btn {
+  position: fixed;
+  right: 29rpx;
+  width: 104rpx;
+  height: 103rpx;
+  bottom: 135rpx;
+  z-index: 1;
+}
+
+.image-text {
+  width:200rpx;
+  height:200rpx;
+  background-color:rgba(0,0,0,0.4);
+  color:white;
+  text-align:center;
+  font-size:45rpx;
+  position:absolute;
+  right:51rpx;
 }

@@ -2,6 +2,7 @@
 
 var app = getApp()
 var Bmob = require("../../utils/bmob.js");
+var Util = require('../../utils/util.js');
 
 var that
 Page({
@@ -15,7 +16,6 @@ Page({
     ishide: "0",
     autoFocus: true,
     isLoading: false,
-    loading: true,
     isdisabled: false,
     images: []
   },
@@ -105,66 +105,119 @@ Page({
     var content = e.detail.value.content;
     var title = e.detail.value.title;
 
-    console.log(content)
-
     if (content == "") {
-      // common.dataLoading("心情内容不能为空", "loading");
-    }
-    else {
+      Util.showErrorTip("发布内容不能为空")
+    } else {
       that.setData({
         isLoading: true,
         isdisabled: true
       })
-      // wx.getStorage({
-      //   key: 'user_id',
-      //   success: function (ress) {
-      //     var Diary = Bmob.Object.extend("Diary");
-      //     var diary = new Diary();
-      //     var me = new Bmob.User();
-      //     me.id = ress.data;
-      //     diary.set("title", title);
-      //     diary.set("content", content);
-      //     diary.set("is_hide", that.data.ishide);
-      //     diary.set("publisher", me);
-      //     diary.set("likeNum", 0);
-      //     diary.set("commentNum", 0);
-      //     diary.set("liker", []);
-      //     if (that.data.isSrc == true) {
-      //       var name = that.data.src;//上传的图片的别名
-      //       var file = new Bmob.File(name, that.data.src);
-      //       file.save();
-      //       diary.set("pic", file);
-      //     }
-      //     diary.save(null, {
-      //       success: function (result) {
-      //         that.setData({
-      //           isLoading: false,
-      //           isdisabled: false
-      //         })
-      //         // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
-      //         common.dataLoading("发布心情成功", "success", function () {
-      //           wx.navigateBack({
-      //             delta: 1
-      //           })
-      //         });
-      //       },
-      //       error: function (result, error) {
-      //         // 添加失败
-      //         console.log(error)
-      //         common.dataLoading("发布心情失败", "loading");
-      //         that.setData({
-      //           isLoading: false,
-      //           isdisabled: false
-      //         })
 
-      //       }
-      //     });
+      var Message = Bmob.Object.extend("Message");
+      var message = new Message();
+      message.set("title", title);
+      message.set("content", content);
+      message.set("publisher", app.globalData.userInfo.nickName);
+      message.set("avatarUrl", app.globalData.userInfo.avatarUrl);
+      // message.set("likeNum", 0);
+      // message.set("commentNum", 0);
+      // message.set("liker", []);
+      if (that.data.images.length > 0) {
+        // 图片
+        Util.showLoadingDialog()
+        var urlArr = new Array();
+        var tempFilePaths = that.data.images;
+        var imgLength = tempFilePaths.length;
+        if (imgLength > 0) {
+          var newDate = new Date();
+          var newDateStr = newDate.toLocaleDateString();
 
+          var j = 0;
+          //如果想顺序变更，可以for (var i = imgLength; i > 0; i--)
+          for (var i = 0; i < imgLength; i++) {
+            var tempFilePath = [tempFilePaths[i]];
+            var extension = /\.([^.]*)$/.exec(tempFilePath[0]);
+            if (extension) {
+              extension = extension[1].toLowerCase();
+            }
+            var name = newDateStr + "." + extension;//上传的图片的别名
 
-      //   }
-      // })
+            var file = new Bmob.File(name, tempFilePath);
+            file.save().then(function (res) {
+              var url = res.url();
+              console.log("第" + i + "张Url" + url);
 
+              urlArr.push({ "url": url });
+              j++;
+              console.log(j, imgLength);
+              if (imgLength == j) {
+                console.log('images update done: ' + JSON.stringify(urlArr));
+                message.set("images", urlArr)
+                message.save(null, {
+                  success: function (result) {
+                    Util.hideLoadingDialog()
+                    that.setData({
+                      isLoading: false,
+                      isdisabled: false
+                    })
+                    wx.showModal({
+                      title: '提示',
+                      content: '发布成功',
+                      showCancel: false,
+                      success: function (res) {
+                        wx.navigateBack({
 
+                        })
+                      }
+                    })
+                  },
+                  error: function (result, error) {
+                    Util.hideLoadingDialog()
+                    // 添加失败
+                    console.log(error)
+                    Util.showErrorTip("sendNewMood查询失败: " + JSON.stringify(error))
+                    that.setData({
+                      isLoading: false,
+                      isdisabled: false
+                    })
+                  }
+                });
+              }
+            }, function (error) {
+              console.log('save images fail: ' + error)
+            });
+
+          }
+        }
+      } else {
+        message.save(null, {
+          success: function (result) {
+            that.setData({
+              isLoading: false,
+              isdisabled: false
+            })
+            wx.showModal({
+              title: '提示',
+              content: '发布成功',
+              showCancel: false,
+              success: function (res) {
+                wx.navigateBack({
+
+                })
+              }
+            })
+          },
+          error: function (result, error) {
+            // 添加失败
+            console.log(error)
+            Util.showErrorTip("sendNewMood查询失败: " + JSON.stringify(error))
+            that.setData({
+              isLoading: false,
+              isdisabled: false
+            })
+          }
+        });
+      }
     }
 
   },

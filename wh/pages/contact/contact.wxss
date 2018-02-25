@@ -1,1 +1,21 @@
 /* pages/contact/contact.wxss */
+
+.cell-wrap {
+  display: flex;justify-content:space-between;align-items:center;margin: 40rpx 0;
+}
+
+.cell {
+  display: flex;align-items:center;
+}
+
+.cell-icon {
+  width:32rpx;height:32rpx;flex-shrink:0;
+}
+
+.cell-title {
+  font-size: 30rpx;margin-left: 20rpx;color:#666666;
+}
+
+.cell-arrows {
+  width:20rpx;height:34rpx;flex-shrink:0;
+}

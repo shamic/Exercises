@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.6.6",
 	"appid": "wxa101b1dc144297b0",
-	"projectname": "wh_demo",
+	"projectname": "wh",
 	"condition": {
 		"search": {
 			"current": -1,

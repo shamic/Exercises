@@ -1,5 +1,9 @@
-// pages/detail/detail.js
+// pages/message/message.js
+
 var Bmob = require('../../utils/bmob.js');
+var Util = require('../../utils/util.js');
+var app = getApp()
+var that
 
 Page({
 
@@ -7,45 +11,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-    message: {}
+    comments: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    var that = this
-    var id = options.id
-
-    var that = this
-    var Message = Bmob.Object.extend("Message");
-    var query = new Bmob.Query(Message);
-    query.equalTo("objectId", id);
-
+    that = this
+    var Comment = Bmob.Object.extend("Comment");
+    var query = new Bmob.Query(Comment);
+    query.limit(15);
+    query.descending("createdAt");
     query.find({
       success: function (results) {
-        // 循环处理查询到的数据
-        console.log(JSON.stringify(results))
-        if (results.length > 0) {
-          var item = results[0]
-          var message = {}
-          message.title = item.get("title")
-          message.content = item.get("content")
-          message.avatarUrl = item.get("avatarUrl")
-          message.publisher = item.get("publisher")
-          message.images = item.get("images")
-          message.id = item.id
-          message.date = item.createdAt
-          that.setData({
-            message: message
-          })
+        var comments = []
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i]
+          var comment = {}
+          comment.name = item.get("name")
+          comment.comment = item.get("comment")
+          comment.wx_name = item.get("wx_name") ? item.get("wx_name") : "未授权获取"
+          comment.phone = item.get("phone")
+          comment.id = item.id
+          comment.date = item.createdAt
+
+          comments.push(comment)
         }
+        that.setData({
+          comments: comments
+        })
       },
       error: function (error) {
         console.log("查询失败: " + error.code + " " + error.message);
+        Util.showErrorTip("查询失败: " + error.code + " " + error.message)
       }
     });
+  },
+
+  callPhone: function (e) {
+    var index = e.currentTarget.dataset.id;
+    var phone = this.data.comments[index].phone
+    wx.makePhoneCall({
+      phoneNumber: phone,
+    })
   },
 
   /**

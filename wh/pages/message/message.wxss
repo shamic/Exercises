@@ -1,4 +1,11 @@
-/* pages/detail/detail.wxss */
+/* pages/message/message.wxss */
+page {
+  background-color: #fbfbfb;
+}
+
+.content {
+  font-size: 14px;
+}
 
 .list_header_left image {
   width: 80rpx;
@@ -25,18 +32,4 @@
 .list_header {
   padding-bottom: 18rpx;
   overflow: hidden;
-}
-
-.content {
-  font-size: 14px;
-}
-
-.img-content {
-  margin: 20rpx 0;
-  justify-content:center;
-  display:flex;
-}
-
-.img {
-  width:100%;
 }

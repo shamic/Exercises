@@ -1,16 +1,17 @@
 <!--pages/detail/detail.wxml-->
-<view style='margin: 30rpx;'>
+<view style='margin: 40rpx;padding-bottom:30rpx;'>
   <view class="list_header">
     <view class="list_header_left">
-      <image mode="aspectFill" src="../images/logo.png" wx:if="userPic"></image>
-      <view>username</view>
+      <image mode="aspectFill" src="{{message.avatarUrl}}" wx:if="userPic"></image>
+      <view>{{message.publisher}}</view>
     </view>
-    <view class="list_header_right">2017-2-23 21:22:12</view>
+    <view class="list_header_right">{{message.date}}</view>
   </view>
   <view class='content'>
-    <text space='emsp'>  您购买的商品需要消磁，请在消磁处消磁后出场，期待您的下次光临。</text>
-    <view class='img-content'>
-      <image style='' src='{{banners[3]}}'></image>
+    <text wx:if="{{message.title}}" class='' style='color:red;' space='emsp'>[{{message.title}}] </text>
+    <text style='color: #666666;' space='emsp'>{{message.content}}</text>
+    <view wx:if="{{message.images}}" class='img-content' wx:for="{{message.images}}" wx:key="objectId">
+      <image mode='aspectFill' class='img' src='{{item.url}}'></image>
     </view>
   </view>
 </view>

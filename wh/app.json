@@ -4,12 +4,14 @@
     "pages/introduction/introduction",
     "pages/detail/detail",
     "pages/write/write",
+    "pages/message/message",
+    "pages/comment/comment",
     "pages/contact/contact"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#58a1db",
-    "navigationBarTitleText": "万合学校",
+    "navigationBarTitleText": "建昌职教中心",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
@@ -20,6 +22,12 @@
         "text": "首页",
         "iconPath": "pages/images/home-icon.png",
         "selectedIconPath": "pages/images/home-icon-selected.png"
+      },
+      {
+        "pagePath": "pages/comment/comment",
+        "text": "留言",
+        "iconPath": "pages/images/comment.png",
+        "selectedIconPath": "pages/images/comment-selected.png"
       },
       {
         "pagePath": "pages/contact/contact",
