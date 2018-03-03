@@ -10,12 +10,12 @@
     <text space='emsp' style='line-height:32px;'>{{article.topContent}}</text>
   </view>
   <view style='display:flex;justify-content:center;' wx:if="{{article.centerImage != null}}">
-    <image style='width:85%;' src='{{article.centerImage}}' mode='aspectFill'></image>
+    <image style='width:85%;' src='{{article.centerImage}}' mode='widthFix'></image>
   </view>
   <view style='font-size:34rpx;margin: 20rpx 60rpx;' wx:if="{{article.centerContent != null}}">
     <text space='emsp' style='line-height:32px;'>{{article.centerContent}}</text>
   </view>
   <view style='display:flex;justify-content:center;' wx:if="{{article.bottomImage != null}}">
-    <image style='width:100%;' src='{{article.bottomImage}}' mode='aspectFill'></image>
+    <image style='width:100%;' src='{{article.bottomImage}}' mode='widthFix'></image>
   </view>
 </view>

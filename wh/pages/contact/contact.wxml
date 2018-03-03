@@ -26,7 +26,7 @@
   <view class='cell-wrap' bindtap='callPhone'>
     <view class='cell'>
       <image class='cell-icon' src="../images/phone-receiver.png"></image>
-      <view class='cell-title'>13888888888</view>
+      <view class='cell-title'>18698838318</view>
     </view>
     <image class='cell-arrows' src="../images/scan_arrows_icon.png"></image>
   </view>
@@ -34,7 +34,7 @@
   <view class='cell-wrap'>
     <view class='cell'>
       <image class='cell-icon' src="../images/wechat.png"></image>
-      <view class='cell-title'>ice3362</view>
+      <view class='cell-title'>微信/QQ:523904057</view>
     </view>
   </view>
 
@@ -46,6 +46,6 @@
   </view>
 
   <view style='display:flex;justify-content:center;'>
-    <image style='width:400rpx;height:400rpx;' src="../images/wx_barcode.png"></image>
+    <image style='width:400rpx;height:400rpx;' src="../images/wx_barcode.jpg"></image>
   </view>  
 </view>

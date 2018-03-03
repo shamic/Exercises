@@ -13,7 +13,7 @@
   <!-- 项目 -->
   <view class="shelf-nav">
     <view class="shelf-nav-item" wx:for="{{ categories }}" wx:key="number">
-      <navigator url="../introduction/introduction?number={{item.number}}">
+      <navigator url="../introduction/introduction?number={{item.number}}" hover-class="none">
         <image src="{{item.imgUrl}}" class="shelf-nav-item__image"></image>
         <text class="shelf-nav-item__text">{{item.title}}</text>
       </navigator>
@@ -30,7 +30,7 @@
       <view class="list_header_right">{{item.date}}</view>
     </view>
     <view class='content' style='margin: 0 30rpx;'>
-      <navigator url="../detail/detail?id={{item.id}}">
+      <navigator url="../detail/detail?id={{item.id}}" hover-class="none">
         <text wx:if="{{item.title}}" class='' style='color:red;' space='emsp'>[{{item.title}}]</text>
         <text class='content-text' space='emsp'>{{item.content}}</text>
         <view class='shelf-article' wx:if="{{item.images}}">

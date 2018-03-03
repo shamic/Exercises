@@ -11,7 +11,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#58a1db",
-    "navigationBarTitleText": "建昌职教中心",
+    "navigationBarTitleText": "建昌职教",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
